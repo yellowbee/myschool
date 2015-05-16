@@ -20,9 +20,14 @@ import com.aidu.myschool.domain.CollegeSearchCriteria;
 @Controller
 public class HomeController {
 
-	@RequestMapping(value="/home", method = RequestMethod.POST)
+	@RequestMapping(value="/dashboard", method = RequestMethod.POST)
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("home");
+		return new ModelAndView("dashboard");
+	}
+	
+	@RequestMapping(value="/college_search", method = RequestMethod.GET)
+	public ModelAndView test_one(HttpServletResponse response) throws IOException{
+		return new ModelAndView("college_search");
 	}
 	
 	@RequestMapping(value="/search_colleges", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)

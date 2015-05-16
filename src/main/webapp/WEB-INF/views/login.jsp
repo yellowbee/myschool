@@ -1,29 +1,10 @@
-<%@ page isELIgnored="false" %>
-<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%-- <%@ page isELIgnored="false" %> --%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<%-- <%
-String path = request.getContextPath();
-String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%> --%>
-<!DOCTYPE html>
-<html>
-<head>
-	<%-- <base href="${basePath}" /> --%>
-	<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-	
-	<link rel="stylesheet" type="text/css" href="resources/jquery-ui-1.11.3/jquery-ui.css" />
-	<link rel="stylesheet" type="text/css" href="resources/jquery-ui-1.11.3/jquery-ui.theme.css" />
-	<link rel="stylesheet" type="text/css" href="resources/primeui-1.1/development/primeui-1.1.css" />
-	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-theme.min.css" />
-    
-    <script src="resources/jquery/jquery-1.11.3.js"></script>
-    <script src="resources/jquery-ui-1.11.3/jquery-ui.js"></script>
-    <script src="resources/primeui-1.1/development/primeui-1.1.js"></script>
-    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
-	
-	<script>
+<t:basic_template>
+	<jsp:attribute name="scripts">
+		<script>
 				$(function() {  
 				    $('#dlg').puidialog({  
 				        showEffect: 'fade',  
@@ -55,17 +36,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				        }  
 				    });  
 				});  
-	</script>
-</head>
-<body>
-	
-	<div class="wrapper">
-			<div id="header">
-				<!-- <b:column span="1"><div class="tile"><h:outputText value="span=1" styleClass="outputtext"/></div></b:column> -->
-				<div class="tile"></div>
-			</div>
-			
-			<div class="container">
+		</script>
+	</jsp:attribute>
+	<jsp:body>
+		<div class="container-fluid">
 				<div class="row">
 				    <div class="col-sm-12 col-md-12 col-lg-12">
 					    <div id="login">
@@ -82,7 +56,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							</div>
 							
 							<div id="sign_in">
-								<form action="home" method="post">
+								<form action="dashboard" method="post">
 									  User name: <input type="text" name="fname"><br>
 									  Password: <input type="text" name="lname"><br>
 									  <input type="submit" value="Submit">
@@ -92,12 +66,5 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				    </div>
 				</div>
 			</div>
-			
-			<div class="push"></div>
-		</div>	
-			
-		<div class="footer">
-			<div class="tile"></div>
-		</div>
-</body>
-</html>
+	</jsp:body>
+</t:basic_template>
