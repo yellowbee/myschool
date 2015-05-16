@@ -4,7 +4,7 @@
 
 
 <t:home_template>
-	<jsp:attribute name="dashboard_tab">
+	<jsp:attribute name="home_tabs">
 		<li class="active"><a href="dashboard">Home</a></li>
 		<li><a href="my_college">my_colleges</a></li>
 		<li><a href="common_app">common_app</a></li>

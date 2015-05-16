@@ -2,6 +2,8 @@ package com.aidu.myschool.domain;
 
 public class College {
 	private String name;
+	private String city;
+	private String state;
 
 	public String getName() {
 		return name;
@@ -11,12 +13,28 @@ public class College {
 		this.name = name;
 	}
 	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public College(String name) {
 		this.name = name;
 	}
 	
 	@Override
 	public String toString() {
-		return "name: " + name + ";";
+		return "name: " + name + ";" + "city: " + city + ";" + "state: " + state;
 	}
 }

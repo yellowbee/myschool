@@ -56,7 +56,7 @@
 							</div>
 							
 							<div id="sign_in">
-								<form action="dashboard" method="post">
+								<form action="authentication" method="post">
 									  User name: <input type="text" name="fname"><br>
 									  Password: <input type="text" name="lname"><br>
 									  <input type="submit" value="Submit">
