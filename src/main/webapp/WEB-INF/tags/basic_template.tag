@@ -22,6 +22,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <script src="resources/primeui-1.1/development/primeui-1.1.js"></script>
     <script src="resources/bootstrap/js/bootstrap.min.js"></script>
     
+	<link rel="stylesheet" type="text/css" href="resources/DataTables-1.10.7/media/css/jquery.dataTables.css">
+	<script type="text/javascript" charset="utf8" src="resources/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+    
+    
     <jsp:invoke fragment="scripts" />
 </head>
 <body>

@@ -29,8 +29,10 @@ public class College {
 		this.state = state;
 	}
 
-	public College(String name) {
+	public College(String name, String city, String state) {
 		this.name = name;
+		this.city = city;
+		this.state = state;
 	}
 	
 	@Override

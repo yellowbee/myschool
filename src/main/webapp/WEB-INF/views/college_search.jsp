@@ -4,7 +4,7 @@
 
 
 <t:home_template>
-	<jsp:attribute name="college_search_scripts">
+	<jsp:attribute name="tab_script">
 		<script>
 			$(document).ready(function() {
 				$('#left').puitabview({
@@ -22,29 +22,51 @@
 						  contentType: "application/json",
 					      url: 'search_colleges',
 					      data: JSON.stringify({
-					         name: 'Ohio University'
+					         name: 'OHIO UNIVERSITY'
 					      }),
 					      dataType: 'json',
 					      success: function(result) {
+					    	
+					    	// create table body html
+					    	var table_body = '<tbody>';
 							$.each(result, function(index, value) {
-								$('#result').append(value.name + '<br/>');
-							})
-					    	 $('#left').puitabview('select', 1);
-					      }	
+								table_body = table_body + '<tr><td>' + value.name + '</td>'
+																+ '<td>' + value.city + '</td>'
+																+ '<td>' + value.state + '</td></tr>';
+							});
+							table_body = table_body + '</tbody>';
+
+							// create full table html
+							var table = '<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display\" id=\"table_result\"><thead><tr><th>School Name</th><th>City</th><th>State</th></tr></thead>';
+							table = table + table_body + '</table>';
+
+							$('#tab2').html(table);
+							$('#table_result').dataTable({
+						        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+						        searching: false
+						    });
+							
+							// set left navbar's height the same as the content
+							   /* var panel_height = $('#table_result_wrapper').height(); */
+							   var panel_height = $('#left.pui-tabview-left > .pui-tabview-panels').height();
+							   $('#left.pui-tabview-left > .pui-tabview-nav').height(panel_height);
+					      	}
 					   });
+					   $('#left').puitabview('select', 1);
 				});
 				
 				// set left navbar's height the same as the content
 				var panel_height = $('#left.pui-tabview-left > .pui-tabview-panels').height();
 				$('#left.pui-tabview-left > .pui-tabview-nav').height(panel_height);
+				
 			});
 		</script>
 	</jsp:attribute>
 	<jsp:attribute name="home_tabs">
 		<li><a href="dashboard">Home</a></li>
-		<li><a href="my_college">my_colleges</a></li>
-		<li><a href="common_app">common_app</a></li>
-		<li class="active"><a href="college_search">college_search</a></li>
+		<li><a href="my_college">My Colleges</a></li>
+		<li><a href="common_app">Common App</a></li>
+		<li class="active"><a href="college_search">College Search</a></li>
 	</jsp:attribute>
 	<jsp:attribute name="tab_content">
 		<div id="left">
@@ -121,8 +143,17 @@
 					</div>
 				</div>
 				<div id="tab2">
-				    <!-- the result of the search will be rendered inside this div -->
-					<div id="result"></div>
+					<%-- <table cellpadding="0" cellspacing="0" border="0" class="display" id="table_result">
+						<thead>
+							<tr>
+								<th>School Name</th>
+								<th>City</th>
+								<th>State</th>
+							</tr>
+						</thead>
+
+					</table> --%>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -38,8 +38,23 @@ public class HomeController {
 	@RequestMapping(value="/search_colleges", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<College> search_colleges(@RequestBody CollegeSearchCriteria criteria) throws IOException{
 		ArrayList<College> collegeList = new ArrayList<College>();
-		collegeList.add(new College(criteria.getName() + "01"));
-		collegeList.add(new College(criteria.getName() + "02"));
+		collegeList.add(new College(criteria.getName(), "Athens", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		collegeList.add(new College("AKRON SCHOOL OF PRACTICAL NRSG", "Akron", "OH"));
+		
 		return collegeList;
 	}
 }

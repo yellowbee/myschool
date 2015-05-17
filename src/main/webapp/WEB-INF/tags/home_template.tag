@@ -8,11 +8,11 @@
 <%@ attribute name="college_search_tab" fragment="true" %> --%>
 <%@ attribute name="home_tabs" fragment="true" %>
 <%@ attribute name="tab_content" fragment="true" %>
-<%@ attribute name="college_search_scripts" fragment="true" %>
+<%@ attribute name="tab_script" fragment="true" %>
 
 <t:basic_template>
 	<jsp:attribute name="scripts">
-		<jsp:invoke fragment="college_search_scripts" />
+		<jsp:invoke fragment="tab_script" />
 	</jsp:attribute>
 	<jsp:body>
 		<div class="container-fluid">

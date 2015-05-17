@@ -56,11 +56,32 @@
 							</div>
 							
 							<div id="sign_in">
-								<form action="authentication" method="post">
-									  User name: <input type="text" name="fname"><br>
-									  Password: <input type="text" name="lname"><br>
-									  <input type="submit" value="Submit">
-								</form> 
+								
+								<form class="form-horizontal" action="authentication" method="post">
+									<div class="form-group">
+							            <label class="control-label col-xs-3" for="firstName">Username:</label>
+							            <div class="col-xs-9">
+							                <input type="text" class="form-control" id="userName" placeholder="Username">
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="control-label col-xs-3" for="inputPassword">Password:</label>
+							            <div class="col-xs-6">
+							                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+							            </div>
+							            <div class="col-xs-3">
+							                <input type="submit" class="btn btn-primary" value="Submit">
+							            </div>
+							        </div>
+							        
+							        <br>
+							        <!-- <div class="form-group">
+							            <div class="col-xs-offset-3 col-xs-9">
+							                <input type="submit" class="btn btn-primary" value="Submit">
+							            </div>
+							        </div> -->
+							    </form>
+
 							</div>
 						</div>
 				    </div>
