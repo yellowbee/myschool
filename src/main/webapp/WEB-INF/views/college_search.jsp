@@ -32,7 +32,7 @@
 							$.each(result, function(index, value) {
 								table_body = table_body + '<tr><td>' + value.name + '</td>'
 																+ '<td>' + value.city + '</td>'
-																+ '<td>' + value.state + '</td></tr>';
+																+ '<td>' + value.state + '<a href="#myModal" data-toggle="modal" style="margin-left: 30px">Add</a>' + '</td></tr>';
 							});
 							table_body = table_body + '</tbody>';
 
@@ -63,9 +63,9 @@
 		</script>
 	</jsp:attribute>
 	<jsp:attribute name="home_tabs">
-		<li><a href="dashboard">Home</a></li>
-		<li><a href="my_college">My Colleges</a></li>
-		<li><a href="common_app">Common App</a></li>
+		<li><a href="dashboard">Dashboard</a></li>
+		<li><a href="#">My Colleges</a></li>
+		<li><a href="#">Common App</a></li>
 		<li class="active"><a href="college_search">College Search</a></li>
 	</jsp:attribute>
 	<jsp:attribute name="tab_content">
@@ -157,5 +157,25 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- Modal HTML -->
+	    <div id="myModal" class="modal fade">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <h4 class="modal-title">Confirmation</h4>
+	                </div>
+	                <div class="modal-body">
+	                    <p>School successfully added to Dashboard!</p>
+	                    <p>Go to <a href="dashboard">Dashboard</a> to review the newly added school.</p>
+	                    <!-- <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p> -->
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 	</jsp:attribute>
 </t:home_template>
