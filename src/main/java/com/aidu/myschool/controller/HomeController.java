@@ -40,8 +40,13 @@ public class HomeController {
 		ArrayList<College> collegeList = new ArrayList<College>();
 		collegeList.add(new College(criteria.getName(), "Athens", "OH"));
 		collegeList.add(new College("AKRON SCHOOL", "Akron", "OH"));
-		collegeList.add(new College("Bowling Green University", "Bowling Green", "OH"));
+		collegeList.add(new College("BOWLING GREEN UNIVERSITY", "Bowling Green", "OH"));
 		
 		return collegeList;
+	}
+	
+	@RequestMapping(value="/my_app", method = RequestMethod.GET)
+	public ModelAndView my_app(HttpServletResponse response) throws IOException{
+		return new ModelAndView("my_app");
 	}
 }

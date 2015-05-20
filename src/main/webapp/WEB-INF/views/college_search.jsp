@@ -65,7 +65,7 @@
 	<jsp:attribute name="home_tabs">
 		<li><a href="dashboard">Dashboard</a></li>
 		<li><a href="#">My Colleges</a></li>
-		<li><a href="#">Common App</a></li>
+		<li><a href="my_app">My App</a></li>
 		<li class="active"><a href="college_search">College Search</a></li>
 	</jsp:attribute>
 	<jsp:attribute name="tab_content">
