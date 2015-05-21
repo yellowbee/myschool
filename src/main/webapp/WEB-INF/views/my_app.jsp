@@ -37,10 +37,8 @@
 				<div id="tab1">
 					<div id="multiple">  
 					    <h3>Personal Information</h3>  
-					    <div>
-					    	Here's the personal information. 
-					    </div>  
-					  
+				    	<t:profile />  
+
 					    <h3>Address</h3>  
 					    <div>  
 					        Here is address. 
