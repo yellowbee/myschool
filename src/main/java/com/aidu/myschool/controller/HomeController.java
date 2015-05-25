@@ -43,6 +43,7 @@ public class HomeController {
 		collegeList.add(new College("BOWLING GREEN UNIVERSITY", "Bowling Green", "OH"));
 		collegeList.add(new College("DAYTON UNIVERSITY", "Dayton", "OH"));
 		collegeList.add(new College("OHIO STATE UNIVERSITY", "Columbus", "OH"));
+		collegeList.add(new College("MIAMI UNIVERSITY", "Miami", "OH"));
 		
 		return collegeList;
 	}
