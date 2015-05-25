@@ -108,7 +108,7 @@
         <br>
         <div class="form-group">
             <div class="col-xs-offset-3 col-xs-9">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="button" class="btn btn-primary button_continue" value="Save">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
         </div>

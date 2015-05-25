@@ -11,9 +11,49 @@
 					orientation: 'left'
 				});
 				
-				$('#default').puiaccordion();  
+				$('#default').puiaccordion();
 
-		        $('#multiple').puiaccordion({multiple:true});
+		        $('#profile').puiaccordion().attr("activeIndex", 0);
+		        
+		        // script for profile.tag
+		        $('.button_continue').click(function(){
+		        	var activeIndex = $('#profile').attr('activeIndex');
+		        	$('#profile').puiaccordion('unselect', activeIndex);
+		        	$('#profile').puiaccordion('select', ++activeIndex);
+		        	$('#profile').attr('activeIndex', activeIndex);
+		        });
+		        
+		        // register click event handler for activated tab
+		        $('h3#personal_info').click(function(){
+		        	$('#profile').attr('activeIndex', 0);
+		        });
+		        $('h3#address').click(function(){
+		        	$('#profile').attr('activeIndex', 1);
+		        });
+		        $('h3#contact_detail').click(function(){
+		        	$('#profile').attr('activeIndex', 2);
+		        });
+		        
+		        //script for address.tag
+		        $("#btn_add_addr").click(function(){
+		    		$("#modal_address").modal('show');
+		    	});
+		        
+		        $('#modal_address #btn_modal_add_addr').click(function(){
+		        	var postalAddr = $('#form_addr #postalAddress').val();
+		        	var zipCode = $('#form_addr #zipCode').val();
+		        	$('#div_addr #asking_for_addr').hide();
+		        	$('#addr_added #postal_addr').html(postalAddr);
+		        	$('#addr_added #zip_code').html(zipCode);
+		        	$('#div_addr #addr_added').show();
+		        });
+
+		        $("#addr_added #rm_addr").click(function(){
+		        	$('#modal_address #postalAddress').val("");
+		        	$('#modal_address #zipCode').val("");
+		        	$('#addr_added').hide();
+		        	$('#div_addr #asking_for_addr').show();
+		        });
 			});
 		</script>
 	</jsp:attribute>
@@ -35,16 +75,14 @@
 			</ul>
 			<div> 
 				<div id="tab1">
-					<div id="multiple">  
-					    <h3>Personal Information</h3>  
-				    	<t:profile />  
+					<div id="profile">  
+					    <h3 id="personal_info">Personal Information</h3>  
+				    	<t:personal_info />  
 
-					    <h3>Address</h3>  
-					    <div>  
-					        Here is address. 
-					    </div>  
+					    <h3 id="address">Address</h3>  
+					    <t:address />  
 					  
-					    <h3>Contact Details</h3>  
+					    <h3 id="contact_detail">Contact Details</h3>  
 					    <div>  
 					        Here is the student's contact details.
 					    </div>      
