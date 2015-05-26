@@ -83,9 +83,7 @@
 					    <t:address />  
 					  
 					    <h3 id="contact_detail">Contact Details</h3>  
-					    <div>  
-					        Here is the student's contact details.
-					    </div>      
+					    <t:contact />      
 					</div>
 				</div>
 				<div id="tab2"></div>

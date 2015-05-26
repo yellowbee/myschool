@@ -13,24 +13,6 @@
 <div class="bs-example">
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label col-xs-3" for="inputEmail">Email:</label>
-            <div class="col-xs-9">
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="inputPassword">Password:</label>
-            <div class="col-xs-9">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="confirmPassword">Confirm Password:</label>
-            <div class="col-xs-9">
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label col-xs-3" for="firstName">First Name:</label>
             <div class="col-xs-9">
                 <input type="text" class="form-control" id="firstName" placeholder="First Name">
@@ -40,12 +22,6 @@
             <label class="control-label col-xs-3" for="lastName">Last Name:</label>
             <div class="col-xs-9">
                 <input type="text" class="form-control" id="lastName" placeholder="Last Name">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="phoneNumber">Phone:</label>
-            <div class="col-xs-9">
-                <input type="tel" class="form-control" id="phoneNumber" placeholder="Phone Number">
             </div>
         </div>
         <div class="form-group">
@@ -64,18 +40,6 @@
                 <select class="form-control">
                     <option>Year</option>
                 </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="postalAddress">Address:</label>
-            <div class="col-xs-9">
-                <textarea rows="3" class="form-control" id="postalAddress" placeholder="Postal Address"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="ZipCode">Zip Code:</label>
-            <div class="col-xs-9">
-                <input type="text" class="form-control" id="ZipCode" placeholder="Zip Code">
             </div>
         </div>
         <div class="form-group">
