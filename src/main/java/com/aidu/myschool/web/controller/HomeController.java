@@ -1,4 +1,4 @@
-package com.aidu.myschool.controller;
+package com.aidu.myschool.web.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;

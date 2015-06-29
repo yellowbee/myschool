@@ -6,7 +6,7 @@
 	<jsp:attribute name="scripts">
 		<script>
 				$(function() {  
-				    $('#dlg').puidialog({  
+				    /* $('#dlg').puidialog({  
 				        showEffect: 'fade',  
 				        hideEffect: 'fade',  
 				        minimizable: true,  
@@ -34,7 +34,7 @@
 				        click: function() {  
 				            $('#dlg').puidialog('show');  
 				        }  
-				    });  
+				    });   */
 				});  
 		</script>
 	</jsp:attribute>
@@ -45,14 +45,50 @@
 					    <div id="login">
 							<div id="sign_up_button" style="margin:10px">
 								<p>Don't have an account yet?</p>
-								<button id="btn-show" type="button">Show</button> 
+								<!-- <button id="btn-show" type="button">Show</button> 
 								<div id="dlg" title="Sign Up">  
 								    <form action="#">
 									  First name: <input type="text" name="fname"><br>
 									  Last name: <input type="text" name="lname"><br>
 									  <input type="submit" value="Submit">
 									</form>  
-								</div> 
+								</div> -->
+								
+								<a href="#signup_modal" class="btn btn-lg btn-primary" data-toggle="modal">Sign Up</a>
+								<div id="signup_modal" class="modal fade">
+							        <div class="modal-dialog">
+							            <div class="modal-content">
+							                <div class="modal-header">
+							                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							                    <h4 class="modal-title">Confirmation</h4>
+							                </div>
+							                <div class="modal-body">
+							                   <form class="form-horizontal">
+											        <div class="form-group">
+											            <label for="inputEmail" class="control-label col-xs-2">Email</label>
+											            <div class="col-xs-10">
+											                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+											            </div>
+											        </div>
+											        <div class="form-group">
+											            <label for="inputPassword" class="control-label col-xs-2">Password</label>
+											            <div class="col-xs-10">
+											                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+											            </div>
+											        </div>
+											        <div class="form-group">
+											            <div class="col-xs-offset-2 col-xs-10">
+											                <button type="submit" class="btn btn-primary">Sign Up</button>
+											            </div>
+											        </div>
+											    </form>
+							                </div>
+							                <div class="modal-footer">
+							                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
 							</div>
 							
 							<div id="sign_in">

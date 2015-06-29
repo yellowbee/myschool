@@ -1,4 +1,4 @@
-package com.aidu.myschool.controller;
+package com.aidu.myschool.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
