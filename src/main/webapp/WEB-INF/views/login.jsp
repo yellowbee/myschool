@@ -78,6 +78,18 @@
 											            </div>
 											        </div>
 											        <div class="form-group">
+											            <label for="inputFirstName" class="control-label col-xs-2">First Name</label>
+											            <div class="col-xs-10">
+											                <form:input path="firstName" class="form-control" id="inputFirstName" placeholder="First Name" />
+											            </div>
+											        </div>
+											        <div class="form-group">
+											            <label for="inputLastName" class="control-label col-xs-2">Last Name</label>
+											            <div class="col-xs-10">
+											                <form:input path="lastName" class="form-control" id="inputLastName" placeholder="Last Name" />
+											            </div>
+											        </div>
+											        <div class="form-group">
 											            <div class="col-xs-offset-2 col-xs-10">
 											                <button type="submit" class="btn btn-primary">Sign Up</button>
 											            </div>
