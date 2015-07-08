@@ -1,7 +1,10 @@
 package com.aidu.myschool.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,6 +20,12 @@ public class UserDaoImpl implements UserDao {
 
 	public void insert(User user) {
 		entityManager.persist(user);
+	}
+
+	public List<User> getUserByEmail(String email) {
+		Query query = entityManager.createNamedQuery("user.find.password.by.email", User.class);
+		query.setParameter("email", email);
+		return  query.getResultList();
 	}
 	
 	

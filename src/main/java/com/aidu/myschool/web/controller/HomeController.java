@@ -20,10 +20,10 @@ import com.aidu.myschool.domain.CollegeSearchCriteria;
 @Controller
 public class HomeController {
 
-	@RequestMapping(value="/authentication", method = RequestMethod.POST)
+	/*@RequestMapping(value="/authentication", method = RequestMethod.POST)
 	public ModelAndView authenticate(HttpServletResponse response) throws IOException{
 		return new ModelAndView("dashboard");
-	}
+	}*/
 	
 	@RequestMapping(value="/dashboard", method = RequestMethod.GET)
 	public ModelAndView test(HttpServletResponse response) throws IOException{

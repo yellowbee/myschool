@@ -1,7 +1,7 @@
 package com.aidu.myschool.web.formbean;
 
 /*
- * Form-backing object for signup form.
+ * Form-backing bean for signup form.
  */
 public class SignUpForm {
 	private String email;

@@ -4,14 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQuery(name="user.find.password.by.email", query="SELECT u from User u where u.email = :email")
 @Entity
 @Table(name="usr")
 public class User {
 	private int id;
 	private String email;
-	private String password_hash;
+	private String passwordHash;
 	private String firstName;
 	private String lastName;
 	
@@ -34,11 +36,11 @@ public class User {
 	}
 	
 	@Column(name="passwd_hash")
-	public String getPassword_hash() {
-		return password_hash;
+	public String getPasswordHash() {
+		return passwordHash;
 	}
-	public void setPassword_hash(String password_hash) {
-		this.password_hash = password_hash;
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 	
 	@Column(name="fst_name")

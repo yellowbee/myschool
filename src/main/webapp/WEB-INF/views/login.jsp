@@ -106,20 +106,20 @@
 							
 							<div id="sign_in">
 								
-								<form class="form-horizontal" action="authentication" method="post">
+								<form:form class="form-horizontal" action="authentication" method="post" commandName="loginForm">
 									<div class="form-group">
-							            <label class="control-label col-xs-3" for="firstName">Username:</label>
+							            <label class="control-label col-xs-3" for="username">Username:</label>
 							            <div class="col-xs-9">
-							                <input type="text" class="form-control" id="userName" placeholder="Username">
+							                <form:input path="username" class="form-control" id="inputUsername" placeholder="Input Email Address Here" />
 							            </div>
 							        </div>
 							        <div class="form-group">
 							            <label class="control-label col-xs-3" for="inputPassword">Password:</label>
 							            <div class="col-xs-6">
-							                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+							                <form:password path="password" class="form-control" id="inputPassword" placeholder="Password" />
 							            </div>
 							            <div class="col-xs-3">
-							                <input type="submit" class="btn btn-primary" value="Submit">
+							                <input type="submit" class="btn btn-primary" value="Submit" />
 							            </div>
 							        </div>
 							        
@@ -129,7 +129,7 @@
 							                <input type="submit" class="btn btn-primary" value="Submit">
 							            </div>
 							        </div> -->
-							    </form>
+							    </form:form>
 
 							</div>
 						</div>
