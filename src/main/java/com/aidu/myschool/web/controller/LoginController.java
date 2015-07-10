@@ -4,6 +4,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -44,7 +48,7 @@ public class LoginController {
         User user = new User();
         user.setEmail(signUpForm.getEmail());
         
-        // conver the password in plain text to 48-bit salted hash code
+        // convert the password in plain text to 48-bit salted hash code
         try {
 			user.setPasswordHash(PasswordHash.createHash(signUpForm.getPassword()));
 		} catch (NoSuchAlgorithmException e) {
@@ -64,14 +68,22 @@ public class LoginController {
     }
 	
 	@RequestMapping(value="/authentication", method = RequestMethod.POST)
-	public ModelAndView authenticate(@ModelAttribute("loginForm") LoginForm loginForm) {
+	public ModelAndView authenticate(@ModelAttribute("loginForm") LoginForm loginForm, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(loginForm.getUsername());
 		System.out.println(loginForm.getPassword());
 		
 		List<User> results = userDao.getUserByEmail(loginForm.getUsername());
+		if (results == null) return null;
 		try {
 			if (PasswordHash.validatePassword(loginForm.getPassword(), results.get(0).getPasswordHash())) {
-				return new ModelAndView("dashboard");
+				HttpSession session = request.getSession();
+				session.setAttribute("user", results.get(0));
+				ModelAndView mav = new ModelAndView("dashboard");
+				mav.addObject("user", results.get(0));
+				return mav;
+			}
+			else {
+				return null;
 			}
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

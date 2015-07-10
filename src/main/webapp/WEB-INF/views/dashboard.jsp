@@ -1,26 +1,32 @@
-<%-- <%@ page isELIgnored="false" %> --%>
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ page isELIgnored="false"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
+<%-- <%@ page import="com.aidu.myschool.domain.User"%>
+<div>
+	<%=((User) session.getAttribute("user")).getFirstName()%>
+</div> --%>
 
 <t:home_template>
 	<jsp:attribute name="tab_script">
-		<script type="text/javascript">  
-	    $(function() {  
-	        $('#default').puiaccordion();  
-	  
-	        $('#multiple').puiaccordion({multiple:true});  
-	    });  
+		<script type="text/javascript">
+			$(function() {
+				$('#default').puiaccordion();
+
+				$('#multiple').puiaccordion({
+					multiple : true
+				});
+			});
 		</script>  
 	</jsp:attribute>
-	
+
 	<jsp:attribute name="home_tabs">
 		<li class="active"><a href="dashboard">Dashboard</a></li>
 		<li><a href="#">My Colleges</a></li>
 		<li><a href="my_app">My App</a></li>
 		<li><a href="college_search">College Search</a></li>
 	</jsp:attribute>
-	
+
 	<jsp:attribute name="tab_content">
 		<div id="multiple">  
 		    <h3>Ohio University</h3>  
