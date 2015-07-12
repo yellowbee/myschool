@@ -1,6 +1,7 @@
 <%@ page isELIgnored="false"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 <%-- <%@ page import="com.aidu.myschool.domain.User"%>
 <div>
@@ -25,6 +26,10 @@
 		<li><a href="#">My Colleges</a></li>
 		<li><a href="my_app">My App</a></li>
 		<li><a href="college_search">College Search</a></li>
+		<div>
+			<c:out value="${user.lastName}" />,<c:out value="${user.firstName}" />
+		</div>
+		<div><a href="logout">Log out</a></div>
 	</jsp:attribute>
 
 	<jsp:attribute name="tab_content">

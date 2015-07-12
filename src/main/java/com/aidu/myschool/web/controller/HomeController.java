@@ -29,17 +29,22 @@ public class HomeController {
 	 */
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView test(HttpServletResponse response) throws IOException {
+	public ModelAndView dashboard(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession(false);
+		
+		// if user has not loggin in yet or already logged out
+		if (session == null || session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:login");
+		}
 		return new ModelAndView("dashboard");
 	}
 
 	@RequestMapping(value = "/college_search", method = RequestMethod.GET)
-	public ModelAndView test_one(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView collegeSearch(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		HttpSession session = request.getSession(false);
-		if (session == null) return null;
-		else {
-			if (session.getAttribute("user") == null) return null;
+		if (session == null || session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:login");
 		}
 		
 		return new ModelAndView("college_search");

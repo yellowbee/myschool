@@ -36,6 +36,13 @@ public class LoginController {
 		return model;
 	}
 	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(false);
+		if (session != null) session.invalidate();
+		return new ModelAndView("redirect:login");
+	}
+	
 	@RequestMapping(value="/signUp", method = RequestMethod.POST)
 	public ModelAndView processSignUp(@ModelAttribute("signUpForm") SignUpForm signUpForm) {
          

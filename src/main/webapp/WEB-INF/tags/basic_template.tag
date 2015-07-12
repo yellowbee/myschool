@@ -33,9 +33,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<div id="header">
 				<!-- <b:column span="1"><div class="tile"><h:outputText value="span=1" styleClass="outputtext"/></div></b:column> -->
 				<div class="tile"></div>
-				<div>
-					<span>Hello $(sessionScope.user.firstName) $(user.lastName)</span>
-				</div>
 			</div>
 			
 			<div id="content">
