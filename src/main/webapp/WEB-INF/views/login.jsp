@@ -1,7 +1,8 @@
-<%-- <%@ page isELIgnored="false" %> --%>
+<%@ page isELIgnored="false" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 <t:basic_template>
 	<jsp:attribute name="scripts">
@@ -105,6 +106,7 @@
 							</div>
 							
 							<div id="sign_in">
+								<div><span id="alert" style="color:red" class="${visibility}">Incorrect Username or/and Password</span></div>
 								
 								<form:form class="form-horizontal" action="authentication" method="post" commandName="loginForm">
 									<div class="form-group">

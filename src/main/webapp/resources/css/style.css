@@ -74,3 +74,11 @@ html, body {
   text-align: left;
   vertical-align: middle;
 }
+
+visible {
+	visibility: visible
+}
+
+visible {
+	visibility: hidden
+}

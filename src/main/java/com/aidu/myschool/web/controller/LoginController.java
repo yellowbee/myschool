@@ -33,6 +33,7 @@ public class LoginController {
 		ModelAndView model = new ModelAndView("login");
 		model.addObject("signUpForm", new SignUpForm());
 		model.addObject("loginForm", new LoginForm());
+		model.addObject("visibility", "hidden");
 		return model;
 	}
 	
@@ -79,18 +80,28 @@ public class LoginController {
 		System.out.println(loginForm.getUsername());
 		System.out.println(loginForm.getPassword());
 		
+		ModelAndView mav = null;
 		List<User> results = userDao.getUserByEmail(loginForm.getUsername());
-		if (results == null) return null;
+		if (results.size() == 0) {
+			mav = new ModelAndView("login");
+			mav.addObject("signUpForm", new SignUpForm());
+			mav.addObject("loginForm", new LoginForm());
+			mav.addObject("visibility", "visible");
+			return mav;
+		}
+		
 		try {
 			if (PasswordHash.validatePassword(loginForm.getPassword(), results.get(0).getPasswordHash())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", results.get(0));
-				ModelAndView mav = new ModelAndView("dashboard");
+				mav = new ModelAndView("dashboard");
 				mav.addObject("user", results.get(0));
-				return mav;
 			}
 			else {
-				return null;
+				mav = new ModelAndView("login");
+				mav.addObject("signUpForm", new SignUpForm());
+				mav.addObject("loginForm", new LoginForm());
+				mav.addObject("visibility", "visible");
 			}
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
@@ -98,6 +109,6 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return mav;
 	}
 }
