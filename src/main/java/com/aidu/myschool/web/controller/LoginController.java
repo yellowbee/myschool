@@ -94,7 +94,7 @@ public class LoginController {
 			if (PasswordHash.validatePassword(loginForm.getPassword(), results.get(0).getPasswordHash())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", results.get(0));
-				mav = new ModelAndView("dashboard");
+				mav = new ModelAndView("home");
 				mav.addObject("user", results.get(0));
 			}
 			else {

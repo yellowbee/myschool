@@ -1,6 +1,6 @@
 #header {
-	height: 200px;
-	background-color: gray;
+	/*height: 200px;*/
+	/* background-color: gray; */
 }
 
 .footer {
@@ -54,10 +54,10 @@ html, body {
 	transform: translate(-50%, -50%); */
 }
 
-#tab_view {
+/*#tab_view {
 	width: 80%;
 	margin: 100px auto;
-}
+}*/
 
 /* To center bootstrap modal */
 .modal {

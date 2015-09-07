@@ -28,6 +28,17 @@ public class HomeController {
 	 * IOException{ return new ModelAndView("dashboard"); }
 	 */
 
+	@RequestMapping(value = "/find_my_college", method = RequestMethod.GET)
+	public ModelAndView findMyCollege(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession(false);
+		
+		// if user has not loggin in yet or already logged out
+		if (session == null || session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:login");
+		}
+		return new ModelAndView("find_my_college");
+	}
+	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView dashboard(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession(false);
