@@ -39,6 +39,28 @@ public class HomeController {
 		return new ModelAndView("find_my_college");
 	}
 	
+	@RequestMapping(value = "/my_app", method = RequestMethod.GET)
+	public ModelAndView myApp(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession(false);
+		
+		// if user has not loggin in yet or already logged out
+		if (session == null || session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:login");
+		}
+		return new ModelAndView("my_app");
+	}
+	
+	@RequestMapping(value = "/college_report", method = RequestMethod.GET)
+	public ModelAndView collegeReport(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession(false);
+		
+		// if user has not loggin in yet or already logged out
+		if (session == null || session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:login");
+		}
+		return new ModelAndView("college_report");
+	}
+	
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView dashboard(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession(false);
@@ -76,8 +98,4 @@ public class HomeController {
 		return collegeList;
 	}
 
-	@RequestMapping(value = "/my_app", method = RequestMethod.GET)
-	public ModelAndView my_app(HttpServletResponse response) throws IOException {
-		return new ModelAndView("my_app");
-	}
 }

@@ -4,7 +4,7 @@
 
 
 <t:new_template>
-	<jsp:attribute name="find_my_college_tabs">
+	<jsp:attribute name="a_fragment">
 		<div class="row" style="margin-top: 30px">
 			<div class="col-md-2 col-lg-2"></div>
                 <div class="col-md-10 col-lg-10"><h3>Find My College</h3></div>
@@ -150,7 +150,7 @@
                                     <td style="padding-bottom: 10px;width: 25%;text-align:center">
                                         <div class="panel panel-default" style="margin:5px">
                                             <div class="panel-body">
-                                                <div><a href="#"><h5>Ohio University</h5></a></div>
+                                                <div><a href="college_report"><h5>Ohio University</h5></a></div>
                                                 <hr/>
                                                 <h5>Athens, OH</h5>
                                                 <hr/>

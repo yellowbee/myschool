@@ -3,96 +3,128 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 
-<t:home_template>
-	<jsp:attribute name="tab_script">
-		<script>
-			$(document).ready(function() {
-				$('#left').puitabview({
-					orientation: 'left'
-				});
-				
-				$('#default').puiaccordion();
+<t:new_template>
+	<jsp:attribute name="a_fragment">
+		<div class="row" style="margin-top: 30px">
+                <div class="col-md-2 col-lg-2"></div>
+                <div class="col-md-10 col-lg-10"><h3>My App</h3></div>
+            </div>
+            <div class="row" style="margin-top:35px">
+                <div class="col-md-2 col-lg-2"></div>
+                <div class="col-md-2 col-lg-2">
+                    <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
+                        <li class="active"><a href="#profile" data-toggle="tab"><b style="font-size:18px">Profile</b></a></li>
+                        <li><a href="#education" data-toggle="tab"><b style="font-size:18px">Education</b></a></li>
+                        <li><a href="#testing" data-toggle="tab"><b style="font-size:18px">Testing</b></a></li>
+                        <li><a href="#activities" data-toggle="tab"><b style="font-size:18px">Activities</b></a></li>
+                        <li><a href="#writing" data-toggle="tab"><b style="font-size:18px">Writing</b></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="tab-content" style="margin-left:20px">
+                        <div class="tab-pane active" id="profile">
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Profile</h3>
+                            <div>
 
-		        $('#profile').puiaccordion().attr("activeIndex", 0);
-		        
-		        // script for profile.tag
-		        $('.button_continue').click(function(){
-		        	var activeIndex = $('#profile').attr('activeIndex');
-		        	$('#profile').puiaccordion('unselect', activeIndex);
-		        	$('#profile').puiaccordion('select', ++activeIndex);
-		        	$('#profile').attr('activeIndex', activeIndex);
-		        });
-		        
-		        // register click event handler for activated tab
-		        $('h3#personal_info').click(function(){
-		        	$('#profile').attr('activeIndex', 0);
-		        });
-		        $('h3#address').click(function(){
-		        	$('#profile').attr('activeIndex', 1);
-		        });
-		        $('h3#contact_detail').click(function(){
-		        	$('#profile').attr('activeIndex', 2);
-		        });
-		        
-		        //script for address.tag
-		        $("#btn_add_addr").click(function(){
-		    		$("#modal_address").modal('show');
-		    	});
-		        
-		        $('#modal_address #btn_modal_add_addr').click(function(){
-		        	var postalAddr = $('#form_addr #postalAddress').val();
-		        	var zipCode = $('#form_addr #zipCode').val();
-		        	$('#div_addr #asking_for_addr').hide();
-		        	$('#addr_added #postal_addr').html(postalAddr);
-		        	$('#addr_added #zip_code').html(zipCode);
-		        	$('#div_addr #addr_added').show();
-		        });
-
-		        $("#addr_added #rm_addr").click(function(){
-		        	$('#modal_address #postalAddress').val("");
-		        	$('#modal_address #zipCode').val("");
-		        	$('#addr_added').hide();
-		        	$('#div_addr #asking_for_addr').show();
-		        });
-			});
-		</script>
+                                <form class="form-horizontal">
+                                    <h5 style="margin-left: 30px">Personal Information</h5>
+                                    <hr/>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="firstName">First Name:</label>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="lastName">Last Name:</label>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3">Gender:</label>
+                                        <div class="col-xs-2">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="genderRadios" value="male"> Male
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="genderRadios" value="female"> Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3">Date of Birth:</label>
+                                        <div class="col-xs-3">
+                                            <select class="form-control">
+                                                <option>Date</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <select class="form-control">
+                                                <option>Month</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <select class="form-control">
+                                                <option>Year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <h5 style="margin-left: 30px">Address</h5>
+                                    <hr/>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="postalAddress">Address:</label>
+                                        <div class="col-xs-9">
+                                            <textarea rows="3" class="form-control" id="postalAddress" placeholder="Postal Address"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="ZipCode">Zip Code:</label>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" id="ZipCode" placeholder="Zip Code">
+                                        </div>
+                                    </div>
+                                    <h5 style="margin-left: 30px">Contact Details</h5>
+                                    <hr/>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="inputEmail">Email:</label>
+                                        <div class="col-xs-9">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3" for="phoneNumber">Phone:</label>
+                                        <div class="col-xs-9">
+                                            <input type="tel" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-3 col-xs-9">
+                                            <input type="submit" class="btn btn-primary" value="Submit">
+                                            <input type="reset" class="btn btn-default" value="Reset">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="education">
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Education</h3>
+                        </div>
+                        <div class="tab-pane" id="testing">
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Testing</h3>
+                        </div>
+                        <div class="tab-pane" id="activities">
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Activities</h3>
+                        </div>
+                        <div class="tab-pane" id="writing">
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Writing</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-2"></div>
+            </div>
 	</jsp:attribute>
-	<jsp:attribute name="home_tabs">
-		<li><a href="dashboard">Dashboard</a></li>
-		<li><a href="#">My Colleges</a></li>
-		<li class="active"><a href="my_app">My App</a></li>
-		<li><a href="college_search">College Search</a></li>
-	</jsp:attribute>
-	<jsp:attribute name="tab_content">
-		<div id="left">
-			<ul>  
-				<li><a href="#tab1">Profile</a></li>  
-				<li><a href="#tab2">Family</a></li>
-				<li><a href="#tab3">Education</a></li>
-				<li><a href="#tab4">Testing</a></li>
-				<li><a href="#tab5">Activities</a></li>
-				<li><a href="#tab6">Writing</a></li>
-			</ul>
-			<div> 
-				<div id="tab1">
-					<div id="profile">  
-					    <h3 id="personal_info">Personal Information</h3>  
-				    	<t:personal_info />  
-
-					    <h3 id="address">Address</h3>  
-					    <t:address />  
-					  
-					    <h3 id="contact_detail">Contact Details</h3>  
-					    <t:contact />      
-					</div>
-				</div>
-				<div id="tab2"></div>
-				<div id="tab3"></div>
-				<div id="tab4"></div>
-				<div id="tab5"></div>
-				<div id="tab6"></div>
-			</div>
-		</div>
-
-	</jsp:attribute>
-</t:home_template>
+</t:new_template>
