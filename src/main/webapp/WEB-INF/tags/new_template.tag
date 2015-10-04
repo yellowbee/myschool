@@ -1,6 +1,6 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
-<%-- <%@ attribute name="scripts" fragment="true" %> --%>
+<%@ attribute name="script" fragment="true" %>
 <%@ attribute name="a_fragment" fragment="true" %>
 <%-- <%
 String path = request.getContextPath();
@@ -36,6 +36,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			$('.selectpicker').selectpicker();
 		});  
 	</script>
+	
+	<jsp:invoke fragment="script" />
 </head>
 <body>
 	
@@ -67,7 +69,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						    <span class="dropdown" style="margin-right:20px">
 						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">My Colleges</b><b class="caret"></b></a>
 						        <ul class="dropdown-menu">
-                                    <li><a href="#">College List</a></li>
+                                    <li><a href="college_list">College List</a></li>
                                 </ul>
 						    </span>
 						    <span class="dropdown" style="margin-right:20px">
@@ -85,7 +87,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                         </div>
                     </div>
 					<div style="float:right; margin-top:10px">
-						<span style="margin-right: 20px">Hi&nbsp;<c:out value="${user.lastName}" />,<c:out value="${user.firstName}" /></span>
+						<span style="margin-right: 20px">Hi&nbsp;<c:out value="${user.firstName}" /></span>
 						<span><a href="logout">&nbsp;Log out&nbsp;</a></span>
 					</div>
 

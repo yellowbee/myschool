@@ -4,6 +4,37 @@
 
 
 <t:new_template>
+	<jsp:attribute name="script">
+		<script type="text/javascript">
+	        var selected_state_set = {};
+	
+	        $(document).ready(function(){
+	            $('#us_states').change( function() {
+	                $(this).find(":selected").each(function () {
+	                    //console.log( $(this).val() );
+	                    var cur_selected = $(this).val();
+	                    if (cur_selected != 'No Preference') {
+	                        if (!(cur_selected in selected_state_set)) {
+	                            $('#selected_items').append(
+	                                    "<div><a href=\"javascript:;\"><img src=\"resources/images/removeX.png\" height=\"15px\" /></a><span style=\"margin-left:5px\">" + $(this).val() + "</span></div>"
+	                            );
+	                            selected_state_set[cur_selected] = true;
+	                        }
+	                    }
+	                    else {
+	                        $('#selected_items').empty();
+	                        selected_state_set = {};
+	                    }
+	                });
+	            });
+	
+	            $('#selected_items').on('click', 'img', function() {
+	                delete selected_state_set[$(this).parent().next().text()];
+	                $(this).parent().parent().remove();
+	            })
+	        });
+    	</script>  
+	</jsp:attribute>
 	<jsp:attribute name="a_fragment">
 		<div class="row" style="margin-top: 30px">
 			<div class="col-md-2 col-lg-2"></div>
@@ -135,11 +166,63 @@
                         <div class="tab-pane" id="location">
                             <h3 style="border-bottom: solid 1px gray; padding: 5px">Test Scores</h3>
                             <p>Choose as many as you like:</p>
-                            <div>
+                            <div id="us_states">
                             <select class="selectpicker">
+                            	<option>No Preference</option>
                                 <option>Alabama</option>
+                                <option>Alaska</option>
+                                <option>Arizona</option>
+                                <option>Arkansas</option>
+                                <option>California</option>
+                                <option>Colorado</option>
+                                <option>Connecticut</option>
+                                <option>Delaware</option>
+                                <option>Florida</option>
+                                <option>Georgia</option>
+                                <option>Hawaii</option>
+                                <option>Idaho</option>
+                                <option>Illinois</option>
+                                <option>Indiana</option>
+                                <option>Iowa</option>
+                                <option>Kansas</option>
+                                <option>Kentucky</option>
+                                <option>Louisiana</option>
+                                <option>Maine</option>
+                                <option>Maryland</option>
+                                <option>Massachusetts</option>
+                                <option>Michigan</option>
+                                <option>Minnesota</option>
+                                <option>Mississippi</option>
+                                <option>Missouri</option>
+                                <option>Montana</option>
+                                <option>Nebraska</option>
+                                <option>Nevada</option>
+                                <option>New Hampshire</option>
+                                <option>New Jersey</option>
+                                <option>New Mexico</option>
+                                <option>New York</option>
+                                <option>North Carolina</option>
+                                <option>North Dakota</option>
+                                <option>Ohio</option>
+                                <option>Oklahoma</option>
+                                <option>Oregon</option>
+                                <option>Pennsylvania</option>
+                                <option>Rhode Island</option>
+                                <option>South Carolina</option>
+                                <option>South Dakota</option>
+                                <option>Tennessee</option>
+                                <option>Texas</option>
+                                <option>Utah</option>
+                                <option>Vermont</option>
+                                <option>Virginia</option>
+                                <option>Washington</option>
+                                <option>West Virginia</option>
+                                <option>Wisconsin</option>
                                 <option>Wyoming</option>
                             </select>
+                            </div>
+                            <div id="selected_items" style="margin-top: 15px">
+
                             </div>
                             <button type="button" class="btn btn-primary" style="float:right">Save</button>
                         </div>
