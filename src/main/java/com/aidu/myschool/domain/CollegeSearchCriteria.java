@@ -1,13 +1,15 @@
 package com.aidu.myschool.domain;
 
-public class CollegeSearchCriteria {
-	private String name;
+import java.util.List;
 
-	public String getName() {
-		return name;
+public class CollegeSearchCriteria {
+	private List<String> states;
+
+	public List<String> getStates() {
+		return states;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStates(List<String> states) {
+		this.states = states;
 	}
 }

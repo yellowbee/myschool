@@ -8,6 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocumentList;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +27,8 @@ import com.aidu.myschool.domain.CollegeSearchCriteria;
 
 @Controller
 public class HomeController {
-
+	private static String url = "http://localhost:8983/solr/collection1";
+	private static SolrClient solr = new HttpSolrClient(url);
 	/*
 	 * @RequestMapping(value="/authentication", method = RequestMethod.POST)
 	 * public ModelAndView authenticate(HttpServletResponse response) throws
@@ -97,7 +104,7 @@ public class HomeController {
 	public @ResponseBody List<College> search_colleges(
 			@RequestBody CollegeSearchCriteria criteria) throws IOException {
 		ArrayList<College> collegeList = new ArrayList<College>();
-		collegeList.add(new College(criteria.getName(), "Athens", "OH"));
+		collegeList.add(new College("OHIO UNIVERSITY", "Athens", "OH"));
 		collegeList.add(new College("AKRON SCHOOL", "Akron", "OH"));
 		collegeList.add(new College("BOWLING GREEN UNIVERSITY",
 				"Bowling Green", "OH"));
@@ -108,4 +115,37 @@ public class HomeController {
 		return collegeList;
 	}
 
+	@RequestMapping(value = "/find_my_college", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<College> findMyCollege(
+			@RequestBody CollegeSearchCriteria criteria) throws IOException {
+		
+		for (String state : criteria.getStates()) {
+			System.out.println(state);
+		}
+
+		SolrQuery query = new SolrQuery();
+		query.set("q", "a1_state_s:OH OR a1_state_s:MA");
+		query.set("fl", "a1_nm_cllg_s");
+		try {
+			QueryResponse response = solr.query(query);
+			SolrDocumentList results = response.getResults();
+			for (int i = 0; i < results.size(); ++i) {
+			      System.out.println(results.get(i));
+			}
+		} catch (SolrServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ArrayList<College> collegeList = new ArrayList<College>();
+		collegeList.add(new College("OHIO UNIVERSITY", "Athens", "OH"));
+		collegeList.add(new College("AKRON SCHOOL", "Akron", "OH"));
+		collegeList.add(new College("BOWLING GREEN UNIVERSITY",
+				"Bowling Green", "OH"));
+		collegeList.add(new College("DAYTON UNIVERSITY", "Dayton", "OH"));
+		collegeList.add(new College("OHIO STATE UNIVERSITY", "Columbus", "OH"));
+		collegeList.add(new College("MIAMI UNIVERSITY", "Miami", "OH"));
+
+		return collegeList;
+	}
 }

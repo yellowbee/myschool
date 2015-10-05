@@ -31,7 +31,66 @@
 	            $('#selected_items').on('click', 'img', function() {
 	                delete selected_state_set[$(this).parent().next().text()];
 	                $(this).parent().parent().remove();
-	            })
+	            });
+	            
+	            
+	            $('li[id=search_results]').click(function() {	
+	            	   $('#result_table').empty();
+	            	   
+					   $.ajax({
+						  type: "POST",
+						  contentType: "application/json",
+					      url: 'find_my_college',
+					      data: JSON.stringify({
+					         "states": Object.keys(selected_state_set)
+					      }),
+					      dataType: 'json',
+					      success: function(result) {
+					    	  var count = 0;
+					    	  $.each(result, function(index, value) {
+									/* table_body = table_body + '<tr><td>' + value.name + '</td>'
+																	+ '<td>' + value.city + '</td>'
+																	+ '<td>' + value.state + '<a href="#myModal" data-toggle="modal" style="margin-left: 30px">Add</a>' + '</td></tr>'; */
+									if (count % 4 == 0) {
+										$('#result_table').append(
+												 "<tr>" + 
+												 	"<td style=\"padding-bottom: 10px;width: 25%;text-align:center\">" +
+														"<div class=\"panel panel-default\" style=\"margin:5px\">" +
+				                                            "<div class=\"panel-body\">" +
+				                                                "<div><a href=\"college_report\"><h5>" + value.name + "</h5></a></div>" +
+				                                                "<hr/>" +
+				                                                "<h5>" + value.city + "," + value.state + "</h5>" +
+				                                                "<hr/>" +
+				                                                "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
+				                                            "</div>" +
+				                                        "</div>" +
+				                                    "</td>" +
+				                                  "</tr>"
+										);
+									}
+									else {
+										$('#result_table tr:last-child').append(
+											"<td style=\"padding-bottom: 10px;width: 25%;text-align:center\">" +
+												"<div class=\"panel panel-default\" style=\"margin:5px\">" +
+		                                            "<div class=\"panel-body\">" +
+		                                                "<div><a href=\"college_report\"><h5>" + value.name + "</h5></a></div>" +
+		                                                "<hr/>" +
+		                                                "<h5>" + value.city + "," + value.state + "</h5>" +
+		                                                "<hr/>" +
+		                                                "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
+		                                            "</div>" +
+		                                        "</div>" +
+		                                    "</td>"												
+										);
+									}
+																	
+									count++;
+								});
+					      }
+					   });
+				});
+	            
+	            
 	        });
     	</script>  
 	</jsp:attribute>
@@ -49,7 +108,7 @@
                         <li><a href="#location" data-toggle="tab"><b style="font-size:18px">Location</b></a></li>
                         <li><a href="#campus_n_housing" data-toggle="tab"><b style="font-size:18px">Campus & Housing</b></a></li>
                         <li><a href="#paying" data-toggle="tab"><b style="font-size:18px">Paying</b></a></li>
-                        <li><a href="#see_results" data-toggle="tab"><b style="font-size:18px">See Results</b></a></li>
+                        <li id="search_results"><a href="#see_results" data-toggle="tab"><b style="font-size:18px">See Results</b></a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-6">
@@ -228,53 +287,8 @@
                         </div>
                         <div class="tab-pane" id="campus_n_housing">campus and housing</div>
                         <div class="tab-pane" id="see_results">
-                            <table cellpadding="10" style="width:100%">
-                                <tr>
-                                    <td style="padding-bottom: 10px;width: 25%;text-align:center">
-                                        <div class="panel panel-default" style="margin:5px">
-                                            <div class="panel-body">
-                                                <div><a href="college_report"><h5>Ohio University</h5></a></div>
-                                                <hr/>
-                                                <h5>Athens, OH</h5>
-                                                <hr/>
-                                                <button type="button" class="btn btn-primary">Add to List</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td style="padding-bottom: 10px;width: 25%;text-align:center">
-                                        <div class="panel panel-default" style="margin:5px">
-                                            <div class="panel-body">
-                                                <div><a href="#"><h5>Ohio University</h5></a></div>
-                                                <hr/>
-                                                <h5>Athens, OH</h5>
-                                                <hr/>
-                                                <button type="button" class="btn btn-primary">Add to List</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td style="padding-bottom: 10px;width: 25%;text-align:center">
-                                        <div class="panel panel-default" style="margin:5px">
-                                            <div class="panel-body">
-                                                <div><a href="#"><h5>Ohio University</h5></a></div>
-                                                <hr/>
-                                                <h5>Athens, OH</h5>
-                                                <hr/>
-                                                <button type="button" class="btn btn-primary">Add to List</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td style="padding-bottom: 10px;width: 25%;text-align:center">
-                                        <div class="panel panel-default" style="margin:5px">
-                                            <div class="panel-body">
-                                                <div><a href="#"><h5>Ohio University</h5></a></div>
-                                                <hr/>
-                                                <h5>Athens, OH</h5>
-                                                <hr/>
-                                                <button type="button" class="btn btn-primary">Add to List</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                            <table id="result_table" cellpadding="10" style="width:100%">
+                                
                             </table>
                         </div>
                     </div>
