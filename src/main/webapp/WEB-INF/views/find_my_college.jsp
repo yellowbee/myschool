@@ -287,7 +287,11 @@
                         </div>
                         <div class="tab-pane" id="campus_n_housing">campus and housing</div>
                         <div class="tab-pane" id="see_results">
-                            <table id="result_table" cellpadding="10" style="width:100%">
+                            <table id="result_table" cellpadding="10" style="width:100%; table-layout:fixed">
+                            	<col width="25%"/>
+                                <col width="25%"/>
+                                <col width="25%"/>
+                                <col width="25%"/>
                                 
                             </table>
                         </div>
