@@ -1,0 +1,1 @@
+grant all privileges on mydb.* to myuser@localhost identified by 'mypasswd';
