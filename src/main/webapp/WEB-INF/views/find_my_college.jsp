@@ -35,7 +35,7 @@
 	            
 	            
 	            $('li[id=search_results]').click(function() {	
-	            	   $('#result_table').empty();
+	            	   $('#result_table').find('tr').empty();
 	            	   
 					   $.ajax({
 						  type: "POST",
