@@ -26,13 +26,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.CollegeSearchCriteria;
+import com.aidu.myschool.solr.SolrUtil;
 import com.aidu.myschool.util.PropertiesUtil;
 
 @Controller
 public class HomeController {
-	private static String url = "http://localhost:8983/solr/collection1";
-	private static SolrClient solr = new HttpSolrClient(url);
-	private PropertiesUtil propUtil = new PropertiesUtil();
 	/*
 	 * @RequestMapping(value="/authentication", method = RequestMethod.POST)
 	 * public ModelAndView authenticate(HttpServletResponse response) throws
@@ -122,41 +120,7 @@ public class HomeController {
 	@RequestMapping(value = "/find_my_college", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<College> findMyCollege(
 			@RequestBody CollegeSearchCriteria criteria) throws IOException {
-		
-		String queryString = "a1_state_s:DUMMY";
-		Properties prop = propUtil.getProperties("/config/state-mapping.properties");
-		for (String state : criteria.getStates()) {
-			queryString += " OR a1_state_s:" + prop.getProperty(state.replace(" ", ""));
-		}
 
-		SolrQuery query = new SolrQuery();
-		query.set("q", queryString);
-		query.set("fl", "a1_nm_cllg_s, a1_city_s, a1_state_s");
-		ArrayList<College> collegeList = new ArrayList<College>();
-		
-		try {
-			QueryResponse response = solr.query(query);
-			SolrDocumentList results = response.getResults();
-			for (SolrDocument sdoc : results) {
-				collegeList.add(new College((String)sdoc.get("a1_nm_cllg_s"), (String)sdoc.get("a1_city_s"), (String)sdoc.get("a1_state_s")));
-			}
-			/*for (int i = 0; i < results.size(); ++i) {
-			      System.out.println(results.get(i));
-			}*/
-		} catch (SolrServerException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		/*collegeList.add(new College("OHIO UNIVERSITY", "Athens", "OH"));
-		collegeList.add(new College("AKRON SCHOOL", "Akron", "OH"));
-		collegeList.add(new College("BOWLING GREEN UNIVERSITY",
-				"Bowling Green", "OH"));
-		collegeList.add(new College("DAYTON UNIVERSITY", "Dayton", "OH"));
-		collegeList.add(new College("OHIO STATE UNIVERSITY", "Columbus", "OH"));
-		collegeList.add(new College("MIAMI UNIVERSITY", "Miami", "OH"));*/
-
-		return collegeList;
+		return SolrUtil.getCollegeListBySearchCriteria(criteria);
 	}
 }
