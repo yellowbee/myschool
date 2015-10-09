@@ -7,7 +7,8 @@
 	<jsp:attribute name="script">
 		<script type="text/javascript">
 	        var selected_state_set = {};
-	
+	        var src_inst_ctrl = null;
+	        
 	        $(document).ready(function(){
 	            $('#us_states').change( function() {
 	                $(this).find(":selected").each(function () {
@@ -37,12 +38,31 @@
 	            $('li[id=search_results]').click(function() {	
 	            	   $('#result_table').find('tr').empty();
 	            	   
+	            	   if ($('#chkbox_publ').is(":checked") && $('#chkbox_priv').is(":checked")) {
+	                       src_inst_ctrl = null;
+	                   }
+	                   else if ($('#chkbox_publ').is(":checked")) {
+	                       src_inst_ctrl = 'public';
+	                   }
+	                   else if ($('#chkbox_priv').is(":checked")) {
+	                       src_inst_ctrl = 'private';
+	                   }
+	                   else {
+	                	   src_inst_ctrl = null;
+	                   }
+	            	   
+	            	   var state_arr = null;
+	            	   if (Object.keys(selected_state_set).length > 0) {
+	            		   state_arr = Object.keys(selected_state_set);
+	            	   }
+	            	   
 					   $.ajax({
 						  type: "POST",
 						  contentType: "application/json",
 					      url: 'find_my_college',
 					      data: JSON.stringify({
-					         "states": Object.keys(selected_state_set)
+					         "states": state_arr,
+					         "srcInstCtrl": src_inst_ctrl
 					      }),
 					      dataType: 'json',
 					      success: function(result) {
@@ -188,10 +208,10 @@
                                 <tr>
                                     <td style="padding-bottom: 10px"><h5>Public or Private</h5></td>
                                     <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">Public</label>
+                                        <label><input type="checkbox" id="chkbox_publ">Public</label>
                                     </div></td>
                                     <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">Private</label>
+                                        <label><input type="checkbox" id="chkbox_priv">Private</label>
                                     </div></td>
                                 </tr>
                                 <tr>

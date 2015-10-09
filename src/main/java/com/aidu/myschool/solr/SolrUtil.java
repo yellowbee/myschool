@@ -37,7 +37,11 @@ public class SolrUtil {
 		}
 		
 		if (criteria.getSrcInstCtrl() != null) {
-			queryString += "And (a2_src_instl_ctrl_s:" + criteria.getSrcInstCtrl() + ")";
+			queryString += "AND (a2_src_instl_ctrl_s:" + criteria.getSrcInstCtrl() + ")";
+		}
+		
+		if (queryString == null) {
+			queryString = "*:*";
 		}
 		
 		SolrQuery query = new SolrQuery();
