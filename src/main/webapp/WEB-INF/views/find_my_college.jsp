@@ -38,17 +38,14 @@
 	            $('li[id=search_results]').click(function() {	
 	            	   $('#result_table').find('tr').empty();
 	            	   
-	            	   if ($('#chkbox_publ').is(":checked") && $('#chkbox_priv').is(":checked")) {
-	                       src_inst_ctrl = null;
-	                   }
-	                   else if ($('#chkbox_publ').is(":checked")) {
+	            	   if ($('input[value=Public]').is(":checked")) {
 	                       src_inst_ctrl = 'public';
 	                   }
-	                   else if ($('#chkbox_priv').is(":checked")) {
+	                   else if ($('input[value=Private').is(":checked")) {
 	                       src_inst_ctrl = 'private';
 	                   }
-	                   else {
-	                	   src_inst_ctrl = null;
+	                   else if ($('input[value=Dontcare]').is(":checked")) {
+	                       src_inst_ctrl = null;
 	                   }
 	            	   
 	            	   var state_arr = null;
@@ -191,7 +188,6 @@
                                 </tr>
                             </table>
 
-                            <button type="button" class="btn btn-primary" style="float:right">Save</button>
                         </div>
                         <div class="tab-pane" id="type_of_school">
                             <h3 style="border-bottom: solid 1px gray; padding: 5px">Type of School</h3>
@@ -207,12 +203,15 @@
                                 </tr>
                                 <tr>
                                     <td style="padding-bottom: 10px"><h5>Public or Private</h5></td>
-                                    <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox" id="chkbox_publ">Public</label>
-                                    </div></td>
-                                    <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox" id="chkbox_priv">Private</label>
-                                    </div></td>
+                                    <td style="padding-bottom: 10px"><label class="radio-inline">
+                                        <input type="radio" name="srcRadios" value="Public">Public</label>
+                                    </td>
+                                    <td style="padding-bottom: 10px"><label class="radio-inline">
+                                        <input type="radio" name="srcRadios" value="Private">Private</label>
+                                    </td>
+                                    <td style="padding-bottom: 10px"><label class="radio-inline">
+                                        <input type="radio" name="srcRadios" value="Dontcare">Don't care</label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td style="padding-bottom: 10px"><h5>School Size</h5></td>
@@ -240,7 +239,6 @@
                                 </tr>
                             </table>
 
-                            <button type="button" class="btn btn-primary" style="float:right">Save</button>
                         </div>
                         <div class="tab-pane" id="location">
                             <h3 style="border-bottom: solid 1px gray; padding: 5px">Test Scores</h3>
@@ -303,7 +301,7 @@
                             <div id="selected_items" style="margin-top: 15px">
 
                             </div>
-                            <button type="button" class="btn btn-primary" style="float:right">Save</button>
+
                         </div>
                         <div class="tab-pane" id="campus_n_housing">campus and housing</div>
                         <div class="tab-pane" id="see_results">
