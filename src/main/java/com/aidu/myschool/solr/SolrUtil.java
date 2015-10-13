@@ -18,20 +18,25 @@ import com.aidu.myschool.domain.CollegeSearchCriteria;
 import com.aidu.myschool.util.PropertiesUtil;
 
 public class SolrUtil {
-	private static String url = "http://localhost:8983/solr/collection1";
+	final private static String SOLR_FIELD_STATE = "state";
+	final private static String SOLR_FIELD_SHCOOL_NAME = "school-name";
+	final private static String SOLR_FIELD_CITY = "city";
+	final private static int SOLR_MAX_RETURNED_DOCS = 100000;
+			
+	final private static String url = "http://localhost:8983/solr/collection1";
 	private static SolrClient solr = new HttpSolrClient(url);
 	private static PropertiesUtil propUtil = new PropertiesUtil();
 	
 	public static List<College> getCollegeListBySearchCriteria(CollegeSearchCriteria criteria)
 		throws IOException {
 
-		Properties prop = propUtil.getProperties("/config/state-mapping.properties");
+		//Properties prop = propUtil.getProperties("/config/state-mapping.properties");
 		String queryString = null;
 		
 		if (criteria.getStates() != null) {
 			queryString = "(a1_state_s:DUMMY";
 			for (String state : criteria.getStates()) {
-				queryString += " OR a1_state_s:" + prop.getProperty(state.replace(" ", ""));
+				queryString += " OR " + SOLR_FIELD_STATE + ":" + "\"" + state + "\"";
 			}
 			queryString += ")";
 		}
@@ -46,14 +51,15 @@ public class SolrUtil {
 		
 		SolrQuery query = new SolrQuery();
 		query.set("q", queryString);
-		query.set("fl", "a1_nm_cllg_s, a1_city_s, a1_state_s");
+		query.set("fl", "school-name, city, state");
+		query.set("rows", SOLR_MAX_RETURNED_DOCS);
 		ArrayList<College> collegeList = new ArrayList<College>();
 		
 		try {
 			QueryResponse response = solr.query(query);
 			SolrDocumentList results = response.getResults();
 			for (SolrDocument sdoc : results) {
-				collegeList.add(new College((String)sdoc.get("a1_nm_cllg_s"), (String)sdoc.get("a1_city_s"), (String)sdoc.get("a1_state_s")));
+				collegeList.add(new College((String)sdoc.get(SOLR_FIELD_SHCOOL_NAME), (String)sdoc.get(SOLR_FIELD_CITY), (String)sdoc.get(SOLR_FIELD_STATE)));
 			}
 			/*for (int i = 0; i < results.size(); ++i) {
 			      System.out.println(results.get(i));

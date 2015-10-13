@@ -32,6 +32,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <%-- <jsp:invoke fragment="scripts" /> --%>
     <script type="text/javascript">
         var selected_state_set = {};
+        var src_inst_ctrl = null;
 
         $(document).ready(function(){
             $(".dropdown-toggle").dropdown();
@@ -62,7 +63,19 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             });
 
             $('li[id=search_results]').click(function() {
-                console.log(Object.keys(selected_state_set));
+
+                if ($('input[value=Public]').is(":checked")) {
+                    src_inst_ctrl = 'public';
+                }
+                else if ($('input[value=Private').is(":checked")) {
+                    src_inst_ctrl = 'private';
+                }
+                else if ($('input[value=Dontcare]').is(":checked")) {
+                    src_inst_ctrl = null;
+                }
+
+                console.log(src_inst_ctrl);
+
                 $.ajax({
                     type: "POST",
                     contentType: "application/json",
@@ -323,12 +336,15 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                                 </tr>
                                 <tr>
                                     <td style="padding-bottom: 10px"><h5>Public or Private</h5></td>
-                                    <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">Public</label>
-                                    </div></td>
-                                    <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">Private</label>
-                                    </div></td>
+                                    <td style="padding-bottom: 10px"><label class="radio-inline">
+                                        <input type="radio" name="srcRadios" value="Public">Public</label>
+                                    </td>
+                                    <td style="padding-bottom: 10px"><label class="radio-inline">
+                                        <input type="radio" name="srcRadios" value="Private">Private</label>
+                                    </td>
+                                    <td style="padding-bottom: 10px"><label class="radio-inline">
+                                        <input type="radio" name="srcRadios" value="Dontcare">Don't care</label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td style="padding-bottom: 10px"><h5>School Size</h5></td>
