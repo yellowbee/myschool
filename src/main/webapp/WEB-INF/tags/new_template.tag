@@ -14,7 +14,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	
 	<link rel="stylesheet" type="text/css" href="resources/jquery-ui-1.11.3/jquery-ui.css" />
 	<link rel="stylesheet" type="text/css" href="resources/jquery-ui-1.11.3/jquery-ui.theme.css" />
-	<link rel="stylesheet" type="text/css" href="resources/primeui-1.1/development/primeui-1.1.css" />
 	<link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="resources/bootstrap-vertical-tabs/bootstrap.vertical-tabs.min.css" />
@@ -22,12 +21,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     
     <script src="resources/jquery/jquery-1.11.3.js"></script>
     <script src="resources/jquery-ui-1.11.3/jquery-ui.js"></script>
-    <script src="resources/primeui-1.1/development/primeui-1.1.js"></script>
     <script src="resources/bootstrap/js/bootstrap.min.js"></script>
     <script src="resources/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    
-	<link rel="stylesheet" type="text/css" href="resources/DataTables-1.10.7/media/css/jquery.dataTables.css">
-	<script type="text/javascript" charset="utf8" src="resources/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+    <script src="resources/esimakin-twbs-pagination-fbdd6fc/jquery.twbsPagination.min.js"></script>
     
     <%-- <jsp:invoke fragment="scripts" /> --%>
     <script type="text/javascript">

@@ -9,7 +9,23 @@
 	        var selected_state_set = {};
 	        var src_inst_ctrl = null;
 	        
-	        $(document).ready(function(){
+	        function getSchoolTableCellHtml(name, city, state) {
+	        	var html = "<td style=\"padding-bottom: 10px;width: 25%;text-align:center\">" +
+								"<div class=\"panel panel-default\" style=\"margin:5px\">" +
+				                    "<div class=\"panel-body\">" +
+				                        "<div><a href=\"college_report\"><h5>" + name + "</h5></a></div>" +
+				                        "<hr/>" +
+				                        "<h5>" + city + "," + state + "</h5>" +
+				                        "<hr/>" +
+				                        "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
+				                    "</div>" +
+				                "</div>" +
+				            "</td>";
+				return html;
+	        }
+	        
+	        $(document).ready(function(){       	
+	        	
 	            $('#us_states').change( function() {
 	                $(this).find(":selected").each(function () {
 	                    //console.log( $(this).val() );
@@ -35,76 +51,73 @@
 	            });
 	            
 	            
-	            $('li[id=search_results]').click(function() {	
-	            	   $('#result_table').find('tr').empty();
-	            	   
-	            	   if ($('input[value=Public]').is(":checked")) {
-	                       src_inst_ctrl = 'public';
-	                   }
-	                   else if ($('input[value=Private').is(":checked")) {
-	                       src_inst_ctrl = 'private';
-	                   }
-	                   else if ($('input[value=Dontcare]').is(":checked")) {
-	                       src_inst_ctrl = null;
-	                   }
-	            	   
-	            	   var state_arr = null;
-	            	   if (Object.keys(selected_state_set).length > 0) {
-	            		   state_arr = Object.keys(selected_state_set);
-	            	   }
-	            	   
-					   $.ajax({
-						  type: "POST",
-						  contentType: "application/json",
-					      url: 'find_my_college',
-					      data: JSON.stringify({
-					         "states": state_arr,
-					         "srcInstCtrl": src_inst_ctrl
-					      }),
-					      dataType: 'json',
-					      success: function(result) {
-					    	  var count = 0;
-					    	  $.each(result, function(index, value) {
-									/* table_body = table_body + '<tr><td>' + value.name + '</td>'
-																	+ '<td>' + value.city + '</td>'
-																	+ '<td>' + value.state + '<a href="#myModal" data-toggle="modal" style="margin-left: 30px">Add</a>' + '</td></tr>'; */
-									if (count % 4 == 0) {
-										$('#result_table').append(
-												 "<tr>" + 
-												 	"<td style=\"padding-bottom: 10px;width: 25%;text-align:center\">" +
-														"<div class=\"panel panel-default\" style=\"margin:5px\">" +
-				                                            "<div class=\"panel-body\">" +
-				                                                "<div><a href=\"college_report\"><h5>" + value.name + "</h5></a></div>" +
-				                                                "<hr/>" +
-				                                                "<h5>" + value.city + "," + value.state + "</h5>" +
-				                                                "<hr/>" +
-				                                                "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
-				                                            "</div>" +
-				                                        "</div>" +
-				                                    "</td>" +
-				                                  "</tr>"
-										);
-									}
-									else {
-										$('#result_table tr:last-child').append(
-											"<td style=\"padding-bottom: 10px;width: 25%;text-align:center\">" +
-												"<div class=\"panel panel-default\" style=\"margin:5px\">" +
-		                                            "<div class=\"panel-body\">" +
-		                                                "<div><a href=\"college_report\"><h5>" + value.name + "</h5></a></div>" +
-		                                                "<hr/>" +
-		                                                "<h5>" + value.city + "," + value.state + "</h5>" +
-		                                                "<hr/>" +
-		                                                "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
-		                                            "</div>" +
-		                                        "</div>" +
-		                                    "</td>"												
-										);
-									}
-																	
-									count++;
-								});
-					      }
-					   });
+	            $('li[id=search_results]').click(function() {
+       	
+            	   $('#result_table').find('tr').empty();
+            	   
+            	   if ($('input[value=Public]').is(":checked")) {
+                       src_inst_ctrl = 'public';
+                   }
+                   else if ($('input[value=Private').is(":checked")) {
+                       src_inst_ctrl = 'private';
+                   }
+                   else if ($('input[value=Dontcare]').is(":checked")) {
+                       src_inst_ctrl = null;
+                   }
+            	   
+            	   var state_arr = null;
+            	   if (Object.keys(selected_state_set).length > 0) {
+            		   state_arr = Object.keys(selected_state_set);
+            	   }
+            	   
+				   $.ajax({
+					  type: "POST",
+					  contentType: "application/json",
+				      url: 'find_my_college',
+				      data: JSON.stringify({
+				         "states": state_arr,
+				         "srcInstCtrl": src_inst_ctrl
+				      }),
+				      dataType: 'json',
+				      success: function(result) {
+				    	  $('#result_table').find('tr').empty();
+	                    	
+	                    	var cnt = 0;
+					    	$.each(result.slice(0, 16), function(index, value) {
+								if (cnt % 4 == 0) {
+									$('#result_table').append("<tr>" + getSchoolTableCellHtml(value.name, value.city, value.state) + "</tr>");
+								}
+								else {
+									$('#result_table tr:last-child').append(getSchoolTableCellHtml(value.name, value.city, value.state));
+								}
+																
+								cnt++;
+						    });
+				    	  
+				    	  var num_of_pages = Math.floor(result.length / 16) + 1;
+				    	  $('#pagi').empty().append("<ul id=\"pagination-demo\" class=\"pagination-sm\"></ul>");
+				    	  $('#pagination-demo').twbsPagination({
+			                    totalPages: num_of_pages,
+			                    visiblePages: 5,
+			                    onPageClick: function (event, page) {
+			                    	$('#result_table').find('tr').empty();
+			                    	
+			                    	var count = 0;
+							    	$.each(result.slice((page-1)*16, page*16), function(index, value) {
+										if (count % 4 == 0) {
+											$('#result_table').append("<tr>" + getSchoolTableCellHtml(value.name, value.city, value.state) + "</tr>");
+										}
+										else {
+											$('#result_table tr:last-child').append(getSchoolTableCellHtml(value.name, value.city, value.state));
+										}
+																		
+										count++;
+		  						    });
+			                    }
+			              });
+				      }
+				   });
+
 				});
 	            
 	            
@@ -312,6 +325,8 @@
                                 <col width="25%"/>
                                 
                             </table>
+                            <!-- <ul id="pagination-demo" class="pagination-sm"></ul> -->
+                            <div id="pagi"></div>
                         </div>
                     </div>
                 </div>
