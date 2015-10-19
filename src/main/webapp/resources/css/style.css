@@ -82,3 +82,36 @@ visible {
 visible {
 	visibility: hidden
 }
+
+/* Bootstrap typeahead */
+.typeahead, .tt-query, .tt-hint {
+            border: 2px solid #CCCCCC;
+            border-radius: 8px;
+            font-size: 24px;
+            height: 30px;
+            line-height: 30px;
+            outline: medium none;
+            padding: 8px 12px;
+            width: 396px;
+        }
+        .typeahead {
+            background-color: #FFFFFF;
+        }
+        .typeahead:focus {
+            border: 2px solid #0097CF;
+        }
+        
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+    height: 100px;
+}

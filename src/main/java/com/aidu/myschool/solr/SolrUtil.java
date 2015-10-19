@@ -19,6 +19,7 @@ import com.aidu.myschool.util.PropertiesUtil;
 
 public class SolrUtil {
 	final private static String SOLR_FIELD_STATE = "state";
+	final private static String SOLR_FIELD_MAJOR = "major";
 	final private static String SOLR_FIELD_SHCOOL_NAME = "school-name";
 	final private static String SOLR_FIELD_CITY = "city";
 	final private static int SOLR_MAX_RETURNED_DOCS = 100000;
@@ -31,7 +32,7 @@ public class SolrUtil {
 		throws IOException {
 
 		//Properties prop = propUtil.getProperties("/config/state-mapping.properties");
-		String queryString = null;
+		String queryString = "";
 		
 		if (criteria.getStates() != null) {
 			queryString = "(a1_state_s:DUMMY";
@@ -41,11 +42,21 @@ public class SolrUtil {
 			queryString += ")";
 		}
 		
-		if (criteria.getSrcInstCtrl() != null) {
-			queryString += "AND (a2_src_instl_ctrl_s:" + criteria.getSrcInstCtrl() + ")";
+		if (criteria.getMajors() != null) {
+			if (!queryString.equals("")) queryString += "AND ";
+			queryString += "(major:DUMMY";
+			for (String major : criteria.getMajors()) {
+				queryString += " OR " + SOLR_FIELD_MAJOR + ":" + "\"" + major + " BA" + "\"";
+			}
+			queryString += ")";
 		}
 		
-		if (queryString == null) {
+		if (criteria.getSrcInstCtrl() != null) {
+			if (queryString.equals("")) queryString += "AND ";
+			queryString += "(a2_src_instl_ctrl_s:" + criteria.getSrcInstCtrl() + ")";
+		}
+		
+		if (queryString.equals("")) {
 			queryString = "*:*";
 		}
 		

@@ -5,8 +5,10 @@
 
 <t:new_template>
 	<jsp:attribute name="script">
+		<script src="resources/myschool-js/prepopulated-values.js"></script>
 		<script type="text/javascript">
 	        var selected_state_set = {};
+	        var selected_major_set = {};
 	        var src_inst_ctrl = null;
 	        
 	        function getSchoolTableCellHtml(name, city, state) {
@@ -24,19 +26,37 @@
 				return html;
 	        }
 	        
-	        $(document).ready(function(){       	
+	        /* add an element with the label to the container if the label is not in the given set */
+	        function addUniqueEntry(set, label, container) {
+	        	if (!(label in set)) {
+                    $(container).append(
+                            "<div><a href=\"javascript:;\"><img src=\"resources/images/removeX.png\" height=\"15px\" /></a><span style=\"margin-left:5px\">" + label + "</span></div>"
+                    );
+                    set[label] = true;
+                }
+	        }
+	        
+	        $(document).ready(function(){
+	        	
+	        	 $( "#major-input" ).autocomplete({
+		        	 source: getAvailableMajors(),
+		        	 select: function( event, ui ) {
+			        	 addUniqueEntry(selected_major_set, ui.item.value, '#selected-majors');
+			        	 $("#major-input").html(ui.item.value);
+			        	 return false;
+		        	 }
+	        	 });
+	        	 $('#selected-majors').on('click', 'img', function() {
+			         delete selected_major_set[$(this).parent().next().text()];
+			         $(this).parent().parent().remove();
+		         });
 	        	
 	            $('#us_states').change( function() {
 	                $(this).find(":selected").each(function () {
 	                    //console.log( $(this).val() );
 	                    var cur_selected = $(this).val();
 	                    if (cur_selected != 'No Preference') {
-	                        if (!(cur_selected in selected_state_set)) {
-	                            $('#selected_items').append(
-	                                    "<div><a href=\"javascript:;\"><img src=\"resources/images/removeX.png\" height=\"15px\" /></a><span style=\"margin-left:5px\">" + $(this).val() + "</span></div>"
-	                            );
-	                            selected_state_set[cur_selected] = true;
-	                        }
+	                        addUniqueEntry(selected_state_set, cur_selected, '#selected_items');
 	                    }
 	                    else {
 	                        $('#selected_items').empty();
@@ -44,12 +64,11 @@
 	                    }
 	                });
 	            });
-	
 	            $('#selected_items').on('click', 'img', function() {
 	                delete selected_state_set[$(this).parent().next().text()];
 	                $(this).parent().parent().remove();
 	            });
-	            
+	           
 	            
 	            $('li[id=search_results]').click(function() {
        	
@@ -70,13 +89,19 @@
             		   state_arr = Object.keys(selected_state_set);
             	   }
             	   
+            	   var major_arr = null;
+            	   if (Object.keys(selected_major_set).length > 0) {
+            		   major_arr = Object.keys(selected_major_set);
+            	   }
+            	   
 				   $.ajax({
 					  type: "POST",
 					  contentType: "application/json",
 				      url: 'find_my_college',
 				      data: JSON.stringify({
 				         "states": state_arr,
-				         "srcInstCtrl": src_inst_ctrl
+				         "srcInstCtrl": src_inst_ctrl,
+				         "majors": major_arr
 				      }),
 				      dataType: 'json',
 				      success: function(result) {
@@ -136,7 +161,7 @@
                         <li class="active"><a href="#test_scores" data-toggle="tab"><b style="font-size:18px">Test Scores</b></a></li>
                         <li><a href="#type_of_school" data-toggle="tab"><b style="font-size:18px">Type of School</b></a></li>
                         <li><a href="#location" data-toggle="tab"><b style="font-size:18px">Location</b></a></li>
-                        <li><a href="#campus_n_housing" data-toggle="tab"><b style="font-size:18px">Campus & Housing</b></a></li>
+                        <li><a href="#majors" data-toggle="tab"><b style="font-size:18px">Majors</b></a></li>
                         <li><a href="#paying" data-toggle="tab"><b style="font-size:18px">Paying</b></a></li>
                         <li id="search_results"><a href="#see_results" data-toggle="tab"><b style="font-size:18px">See Results</b></a></li>
                     </ul>
@@ -210,7 +235,22 @@
                                     <td style="padding-bottom: 10px"><div class="checkbox">
                                         <label><input type="checkbox">2-year/community<br/>colllege</label>
                                     </div></td>
-                                    <td style="padding-bottom: 10px"><div class="checkbox">
+                                    <td style="padding-bottom: 10px"><div class="c.typeahead, .tt-query, .tt-hint {
+            border: 2px solid #CCCCCC;
+            border-radius: 8px;
+            font-size: 24px;
+            height: 30px;
+            line-height: 30px;
+            outline: medium none;
+            padding: 8px 12px;
+            width: 396px;
+        }
+        .typeahead {
+            background-color: #FFFFFF;
+        }
+        .typeahead:focus {
+            border: 2px solid #0097CF;
+        }heckbox">
                                         <label><input type="checkbox">4-year college or<br/>university</label>
                                     </div></td>
                                 </tr>
@@ -254,7 +294,7 @@
 
                         </div>
                         <div class="tab-pane" id="location">
-                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Test Scores</h3>
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Location</h3>
                             <p>Choose as many as you like:</p>
                             <div id="us_states">
                             <select class="selectpicker">
@@ -316,7 +356,14 @@
                             </div>
 
                         </div>
-                        <div class="tab-pane" id="campus_n_housing">campus and housing</div>
+                        <div class="tab-pane" id="majors">
+                        	<h3 style="border-bottom: solid 1px gray; padding: 5px">Majors</h3>
+                            <p>You would like to major in:</p>
+                        	<div class="bs-example">
+                                <input id="major-input" type="text" class="typeahead tt-query" autocomplete="off" spellcheck="false">
+                                <div id="selected-majors" style="margin-top:20px"></div>
+                            </div>
+                        </div>
                         <div class="tab-pane" id="see_results">
                             <table id="result_table" cellpadding="10" style="width:100%; table-layout:fixed">
                             	<col width="25%"/>
