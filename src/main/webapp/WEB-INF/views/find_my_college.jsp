@@ -145,6 +145,16 @@
 
 				});
 	            
+	            $( "#slider-range-min" ).slider({
+	                range: "min",
+	                value: 37,
+	                min: 1,
+	                max: 50000,
+	                slide: function( event, ui ) {
+	                    $( "#amount" ).val( "$" + ui.value );
+	                }
+	            });
+	            $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
 	            
 	        });
     	</script>  
@@ -360,7 +370,13 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="paying">
-                        
+                        	<h3 style="border-bottom: solid 1px gray; padding: 5px">学费</h3>
+                            <p>我可以支付的最大学费是:</p>
+                            <p>
+						        <label for="amount">Maximum price:</label>
+						        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+						    </p>
+						    <div id="slider-range-min" style="width: 200px"></div>
                         </div>
                         <div class="tab-pane" id="see_results">
                             <table id="result_table" cellpadding="10" style="width:100%; table-layout:fixed">
