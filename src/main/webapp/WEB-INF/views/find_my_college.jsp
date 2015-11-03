@@ -28,8 +28,9 @@
 	        	var html = "<td style=\"padding-bottom: 10px;width: 25%;text-align:center\">" +
 								"<div class=\"panel panel-default\" style=\"margin:5px\">" +
 				                    "<div class=\"panel-body\">" +
+				                    	"<img src=\"resources/images/school_logo/" + name.replace(/\s/g, "-") + ".gif\" alt=\"school logo\"/>" +
+				                    	"<hr/>" +
 				                        "<div><a href=\"college_report\"><h5>" + name + "</h5></a></div>" +
-				                        "<hr/>" +
 				                        "<h5>" + city + "," + state + "</h5>" +
 				                        "<hr/>" +
 				                        "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
@@ -156,24 +157,46 @@
 	            });
 	            $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
 	            
+	            $( "#slider-range-sat" ).slider({
+	                range: "min",
+	                value: 1,
+	                min: 1,
+	                max: 2400,
+	                slide: function( event, ui ) {
+	                    $( "#satScore" ).val( "$" + ui.value );
+	                }
+	            });
+	            $( "#satScore" ).val( "$" + $( "#slider-range-sat" ).slider( "value" ) );
+
+	            $( "#slider-range-act" ).slider({
+	                range: "min",
+	                value: 1,
+	                min: 1,
+	                max: 36,
+	                slide: function( event, ui ) {
+	                    $( "#actScore" ).val( "$" + ui.value );
+	                }
+	            });
+	            $( "#actScore" ).val( "$" + $( "#slider-range-act" ).slider( "value" ) );
+	            
 	        });
     	</script>  
 	</jsp:attribute>
 	<jsp:attribute name="a_fragment">
 		<div class="row" style="margin-top: 30px">
 			<div class="col-md-2 col-lg-2"></div>
-                <div class="col-md-10 col-lg-10"><h3>Find My College</h3></div>
+                <div class="col-md-10 col-lg-10"><h3>搜索我的大学</h3></div>
             </div>
             <div class="row" style="margin-top:35px">
                 <div class="col-md-2 col-lg-2"></div>
                 <div class="col-md-2 col-lg-2">
                     <ul class="nav nav-tabs tabs-left"><!-- 'tabs-right' for right tabs -->
-                        <li class="active"><a href="#test_scores" data-toggle="tab"><b style="font-size:18px">Test Scores</b></a></li>
-                        <li><a href="#type_of_school" data-toggle="tab"><b style="font-size:18px">Type of School</b></a></li>
-                        <li><a href="#location" data-toggle="tab"><b style="font-size:18px">Location</b></a></li>
-                        <li><a href="#majors" data-toggle="tab"><b style="font-size:18px">Majors</b></a></li>
-                        <li><a href="#paying" data-toggle="tab"><b style="font-size:18px">Paying</b></a></li>
-                        <li id="search_results"><a href="#see_results" data-toggle="tab"><b style="font-size:18px">See Results</b></a></li>
+                        <li class="active"><a href="#test_scores" data-toggle="tab"><b style="font-size:18px">标准化考试成绩</b></a></li>
+                        <li><a href="#type_of_school" data-toggle="tab"><b style="font-size:18px">学校类型</b></a></li>
+                        <li><a href="#location" data-toggle="tab"><b style="font-size:18px">学校所在地</b></a></li>
+                        <li><a href="#majors" data-toggle="tab"><b style="font-size:18px">专业</b></a></li>
+                        <li><a href="#paying" data-toggle="tab"><b style="font-size:18px">学费和奖学金</b></a></li>
+                        <li id="search_results"><a href="#see_results" data-toggle="tab"><b style="font-size:18px">查看搜索结果</b></a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-6">
@@ -181,60 +204,21 @@
                         <div class="tab-pane active" id="test_scores">
                             <h3 style="border-bottom: solid 1px gray; padding: 5px">Test Scores</h3>
                             <p>Find Colleges where your SAT and/or ACT scores are close matches or above:</p>
-                            <table cellpadding="10" style="width:100%">
-                                <tr>
-                                    <td style="padding-bottom: 10px"><h5>SAT Critical Reading</h5></td>
-                                    <td style="padding-bottom: 10px"><select class="selectpicker">
-                                        <option>No Preference</option>
-                                        <option>800</option>
-                                        <option>700</option>
-                                        <option>600</option>
-                                        <option>500</option>
-                                        <option>400</option>
-                                        <option>300</option>
-                                        <option>200</option>
-                                    </select></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-bottom: 10px"><h5>SAT Math</h5></td>
-                                    <td style="padding-bottom: 10px"><select class="selectpicker">
-                                        <option>No Preference</option>
-                                        <option>800</option>
-                                        <option>700</option>
-                                        <option>600</option>
-                                        <option>500</option>
-                                        <option>400</option>
-                                        <option>300</option>
-                                        <option>200</option>
-                                    </select></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-bottom: 10px"><h5>SAT Writing</h5></td>
-                                    <td style="padding-bottom: 10px"><select class="selectpicker">
-                                        <option>No Preference</option>
-                                        <option>800</option>
-                                        <option>700</option>
-                                        <option>600</option>
-                                        <option>500</option>
-                                        <option>400</option>
-                                        <option>300</option>
-                                        <option>200</option>
-                                    </select></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-bottom: 10px"><h5>ACT Composite</h5></td>
-                                    <td style="padding-bottom: 10px"><select class="selectpicker">
-                                        <option>No Preference</option>
-                                        <option>800</option>
-                                        <option>700</option>
-                                        <option>600</option>
-                                        <option>500</option>
-                                        <option>400</option>
-                                        <option>300</option>
-                                        <option>200</option>
-                                    </select></td>
-                                </tr>
-                            </table>
+                            <div style="margin-top: 20px">
+						        <p>
+						            <label for="satScore">我的SAT成绩:</label>
+						            <input type="text" id="satScore" readonly style="border:0; color:#f6931f; font-weight:bold;">
+						        </p>
+						        <div id="slider-range-sat" style="width: 300px"></div>
+						    </div>
+						
+						    <div style="margin-top: 20px">
+						        <p>
+						            <label for="actScore">我的ACT COMPOSITE成绩:</label>
+						            <input type="text" id="actScore" readonly style="border:0; color:#f6931f; font-weight:bold;">
+						        </p>
+						        <div id="slider-range-act" style="width: 300px"></div>
+						    </div>
 
                         </div>
                         <div class="tab-pane" id="type_of_school">
@@ -376,7 +360,7 @@
 						        <label for="amount">Maximum price:</label>
 						        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
 						    </p>
-						    <div id="slider-range-min" style="width: 200px"></div>
+						    <div id="slider-range-min" style="width: 300px"></div>
                         </div>
                         <div class="tab-pane" id="see_results">
                             <table id="result_table" cellpadding="10" style="width:100%; table-layout:fixed">

@@ -1,5 +1,5 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-
+<%@ tag pageEncoding="UTF-8" %>
 <%@ attribute name="script" fragment="true" %>
 <%@ attribute name="a_fragment" fragment="true" %>
 <%-- <%
@@ -9,6 +9,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8" />
 	<%-- <base href="${basePath}" /> --%>
 	<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 	
@@ -57,34 +58,34 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                     <div class="bs-example" style="border-bottom:solid 1px #D8D8D8;margin-top:50px">
                         <div style="margin-bottom: 15px">
 						    <span class="dropdown" style="margin-right:20px">
-						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">Dashboard</b><b class="caret"></b></a>
+						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">申请状态</b><b class="caret"></b></a>
 						        <ul class="dropdown-menu">
-                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">申请状态</a></li>
                                 </ul>
 						    </span>
 						    <span class="dropdown" style="margin-right:20px">
-						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">My Colleges</b><b class="caret"></b></a>
+						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">我的候选大学</b><b class="caret"></b></a>
 						        <ul class="dropdown-menu">
-                                    <li><a href="college_list">College List</a></li>
+                                    <li><a href="college_list">我的候选大学</a></li>
                                 </ul>
 						    </span>
 						    <span class="dropdown" style="margin-right:20px">
-						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">My Application</b><b class="caret"></b></a>
+						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">我的申请</b><b class="caret"></b></a>
 						        <ul class="dropdown-menu">
-                                    <li><a href="my_app">My App</a></li>
+                                    <li><a href="my_app">我的申请</a></li>
                                 </ul>
 						    </span>
 						    <span class="dropdown" style="margin-right:20px">
-						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">College Search</b><b class="caret"></b></a>
+						        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style="font-size: 18px">搜索我的大学</b><b class="caret"></b></a>
 						        <ul class="dropdown-menu">
-                                    <li><a href="find_my_college">Find My College</a></li>
+                                    <li><a href="find_my_college">搜索我的大学</a></li>
                                 </ul>
 						    </span>
                         </div>
                     </div>
 					<div style="float:right; margin-top:10px">
 						<span style="margin-right: 20px">Hi&nbsp;<c:out value="${user.firstName}" /></span>
-						<span><a href="logout">&nbsp;Log out&nbsp;</a></span>
+						<span><a href="logout">&nbsp;登出&nbsp;</a></span>
 					</div>
 
                 </div>
