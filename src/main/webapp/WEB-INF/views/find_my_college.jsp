@@ -7,6 +7,8 @@
 	<jsp:attribute name="script">
 		<script src="resources/myschool-js/prepopulated-values.js"></script>
 		<script src="resources/myschool-js/state-eng-2-chn.js"></script>
+		<script src="resources/d3.min.js"></script>
+		<script src="resources/myschool-js/school-data-vis.js"></script>
 		<script type="text/javascript">
 	        var selected_state_set = {};
 	        var selected_major_set = {};
@@ -57,12 +59,22 @@
                 $(ev.data.onPane).addClass("active");
 	        }
 	        
+	        function showVisDataHandler(ev) {
+	        	$('#pieChart').empty();
+	        	drawPieChart('#pieChart', [
+	        	                           { label: "Bachelor", count: 210 },
+	        	                           { label: "Master", count: 110},
+	        	                           { label: "Ph.D", count: 53}
+	        	                       		]);
+	        	switchTabPane(ev);
+	        }
+	        
 	        $(document).ready(function(){
 	        	$('#result_table').on('click', '#clickForInfo', {offTab:'#search_results',
 	        													offPane:'#see_results',
 	        													onTab:'#report',
 	        													onPane:'#school_report'},
-	        						switchTabPane);
+	        						showVisDataHandler);
 	        	
 	        	$('#backToResult').on('click', {offTab:'#report',
 												offPane:'#school_report',
@@ -416,6 +428,9 @@
                             <h5>Location</h5>
                             <h5>Main Address</h5>
                             <h6>120 Chubb Hall <br/> Athens, OH 45701-2979 <br/> www.ohio.edu</h6>
+                            
+                            <hr/>
+                            <div id="pieChart"></div>
 						</div>
                     </div>
                 </div>
