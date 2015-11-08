@@ -30,7 +30,7 @@
 				                    "<div class=\"panel-body\">" +
 				                    	"<img src=\"resources/images/school_logo/" + name.replace(/\s/g, "-") + ".gif\" alt=\"school logo\"/>" +
 				                    	"<hr/>" +
-				                        "<div><a href=\"college_report\"><h5>" + name + "</h5></a></div>" +
+				                        "<div><span id=\"clickForInfo\"><a href=\"javascript:;\"><h5>" + name + "</h5></a></span></div>" +
 				                        "<h5>" + city + "," + state + "</h5>" +
 				                        "<hr/>" +
 				                        "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
@@ -50,7 +50,25 @@
                 }
 	        }
 	        
+	        function switchTabPane(ev) {
+	        	$(ev.data.offTab).removeClass("active");
+                $(ev.data.offPane).removeClass("active");
+               $(ev.data.onTab).addClass("active");
+                $(ev.data.onPane).addClass("active");
+	        }
+	        
 	        $(document).ready(function(){
+	        	$('#result_table').on('click', '#clickForInfo', {offTab:'#search_results',
+	        													offPane:'#see_results',
+	        													onTab:'#report',
+	        													onPane:'#school_report'},
+	        						switchTabPane);
+	        	
+	        	$('#backToResult').on('click', {offTab:'#report',
+												offPane:'#school_report',
+												onTab:'#search_results',
+												onPane:'#see_results'},
+									switchTabPane);
 	        	
 	        	 $( "#major-input" ).autocomplete({
 		        	 source: getAvailableMajors(),
@@ -183,6 +201,7 @@
     	</script>  
 	</jsp:attribute>
 	<jsp:attribute name="a_fragment">
+		<div>
 		<div class="row" style="margin-top: 30px">
 			<div class="col-md-2 col-lg-2"></div>
                 <div class="col-md-10 col-lg-10"><h3>搜索我的大学</h3></div>
@@ -197,6 +216,7 @@
                         <li><a href="#majors" data-toggle="tab"><b style="font-size:18px">专业</b></a></li>
                         <li><a href="#paying" data-toggle="tab"><b style="font-size:18px">学费和奖学金</b></a></li>
                         <li id="search_results"><a href="#see_results" data-toggle="tab"><b style="font-size:18px">查看搜索结果</b></a></li>
+                        <li id="report"><a href="#school_report" data-toggle="tab"><b style="font-size:18px">学校简介</b></a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-6">
@@ -373,9 +393,34 @@
                             <!-- <ul id="pagination-demo" class="pagination-sm"></ul> -->
                             <div id="pagi"></div>
                         </div>
+                        <div class="tab-pane" id="school_report">
+                        	<div id="backToResult"><a href="javascript:;">Back to Search Result</a></div>
+							<img src="resources/images/ou_arial_view.jpg" style="width:100%;display:block;margin-left:auto;margin-right:auto;margin-bottom: 30px"/>
+                            <p><h4>Ohio University is a major U.S. public research university
+                                located primarily on a 1,850-acre (7.5 km2) campus in Athens, Ohio, United States.
+                                As one of America's oldest universities, Ohio University was chartered on
+                                February 18, 1804,[3] and opened for students in 1809.[4] As of 2014, the Athens
+                                campus had approximately 23,300 individual students; the other five campuses had
+                                approximately 10,000 combined; and eLearning had approximately 5900 individual students.
+                                In total, 39,201 individuals were enrolled in classes equivalent to 30,878 full time
+                                equivalent attendance.</h4></p>
+
+                            <hr/>
+                            <h5>Quick Facts</h5>
+                            <h1>Large</h1>
+                            <h6>35,000 total undergrads <br/> 8,000 degree-seeking freshman</h6>
+                            <h1>$12,526 average financial aid</h1>
+                            <h6>65% of financial need met <br/> Tuition and fees $10,957 in-state, $29,421 out-of-state</h6>
+
+                            <hr/>
+                            <h5>Location</h5>
+                            <h5>Main Address</h5>
+                            <h6>120 Chubb Hall <br/> Athens, OH 45701-2979 <br/> www.ohio.edu</h6>
+						</div>
                     </div>
                 </div>
                 <div class="col-md-2 col-lg-2"></div>
+            </div>
             </div>
 	</jsp:attribute>
 </t:new_template>
