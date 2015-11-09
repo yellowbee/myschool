@@ -309,7 +309,7 @@
                             <p>Choose as many as you like:</p>
 
                             <div id="map-box">
-                                <img src="resources/images/map-us.png" width="610" height="373" border="0" usemap="usa_map" style="margin-left: 10%"/>
+                                <img src="resources/images/map-us.png" width="610" height="373" border="0" usemap="#usa_map" style="margin-left: 10%"/>
                                 <map name="usa_map">
                                     <area onclick="clickState('Maine');" shape="poly" alt="Maine" title="缅因" coords="560,68, 557,64, 556,42, 563,33, 563,28, 572,17, 582,17, 586,21, 586,38, 591,44, 594,47, 594,51, 591,52, 587,51, 568,61, 565,64, 563,68" href="javascript:;">
                                     <area onclick="clickState('Massachusetts');" shape="poly" alt="Massachusetts" title="马萨诸塞" coords="542,83, 546,74, 564,73, 567,76, 569,81, 574,82, 573,89, 565,92, 558,84" href="javascript:;">
