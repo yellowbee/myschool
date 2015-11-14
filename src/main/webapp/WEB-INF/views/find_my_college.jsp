@@ -9,6 +9,7 @@
 		<script src="resources/myschool-js/state-eng-2-chn.js"></script>
 		<script src="resources/d3.min.js"></script>
 		<script src="resources/myschool-js/school-data-vis.js"></script>
+		<link rel="stylesheet" type="text/css" href="resources/css/school-piechart.css" />
 		<script type="text/javascript">
 	        var selected_state_set = {};
 	        var selected_major_set = {};

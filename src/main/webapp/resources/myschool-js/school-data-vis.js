@@ -27,16 +27,16 @@ function drawPieChart(domComp, dataset) {
         });
     // add a hidden tooltip dom on the page
     var tooltip = d3.select(domComp).append("div")
-        .attr("id", "tooltip")
-        .attr("class", "hidden");
+        .attr("id", "tooltip");
     tooltip.append("p").attr("id", "label");
     tooltip.append("p").attr("id", "count");
     // setup mouse event on pie chart to popup the tooltip dom just added
     chart.on("mouseover", function (d) {
         var tooltip = d3.select("#tooltip")
-            .style("left", d3.event.pageX + "px")
-            .style("top", d3.event.pageY + "px")
+            .style("left", d3.event.clientX + "px")
+            .style("top", d3.event.clientY + "px")
             .style("opacity", 1);
+        console.log(d3.event);
         tooltip.select("p#label")
             .text(d.data.label);
         tooltip.select("p#count")
