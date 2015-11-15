@@ -33,7 +33,7 @@
 				                    "<div class=\"panel-body\">" +
 				                    	"<img src=\"resources/images/school_logo/" + name.replace(/\s/g, "-") + ".gif\" alt=\"school logo\"/>" +
 				                    	"<hr/>" +
-				                        "<div><span id=\"clickForInfo\"><a href=\"javascript:;\"><h5>" + name + "</h5></a></span></div>" +
+				                        "<div><span id=\"clickForInfo\" title=\"" + name + "\"><a href=\"javascript:;\"><h5>" + name + "</h5></a></span></div>" +
 				                        "<h5>" + city + "," + state + "</h5>" +
 				                        "<hr/>" +
 				                        "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
@@ -60,14 +60,29 @@
                 $(ev.data.onPane).addClass("active");
 	        }
 	        
+	        /* ev handler for clicking #clickForInfo */
 	        function showVisDataHandler(ev) {
-	        	$('#pieChart').empty();
-	        	drawPieChart('#pieChart', [
-	        	                           { label: "Bachelor", count: 210 },
-	        	                           { label: "Master", count: 110},
-	        	                           { label: "Ph.D", count: 53}
-	        	                       		]);
-	        	switchTabPane(ev);
+	        	/* request school info */
+	        	$.ajax({
+					  type: "POST",
+					  contentType: "application/json",
+				      url: 'get-school-stats',
+				      data: JSON.stringify({
+				         "schoolName": $(this).attr("title"),
+				      }),
+				      dataType: 'json',
+				      success: function(result) {
+						  $('#pieChart').empty();
+						  
+						  /* drawPieChart('#pieChart', [
+				        	                           { label: "Bachelor", count: 210 },
+				        	                           { label: "Master", count: 110},
+				        	                           { label: "Ph.D", count: 53}
+				        	                       		]); */
+				          drawPieChart('#pieChart', result);
+				          switchTabPane(ev);
+				      }
+				});     	
 	        }
 	        
 	        $(document).ready(function(){

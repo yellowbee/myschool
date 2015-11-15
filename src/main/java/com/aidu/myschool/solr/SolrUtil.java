@@ -3,7 +3,6 @@ package com.aidu.myschool.solr;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -15,6 +14,7 @@ import org.apache.solr.common.SolrDocumentList;
 
 import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.CollegeSearchCriteria;
+import com.aidu.myschool.domain.MajorsPerDegree;
 import com.aidu.myschool.util.PropertiesUtil;
 
 public class SolrUtil {
@@ -22,6 +22,7 @@ public class SolrUtil {
 	final private static String SOLR_FIELD_MAJOR = "major";
 	final private static String SOLR_FIELD_SHCOOL_NAME = "school-name";
 	final private static String SOLR_FIELD_CITY = "city";
+	final private static String SOLR_FIELD_MAJORS_PER_DEGREE = "majors-by-degrees-ratio";
 	final private static int SOLR_MAX_RETURNED_DOCS = 100000;
 			
 	final private static String url = "http://localhost:8983/solr/collection1";
@@ -80,5 +81,40 @@ public class SolrUtil {
 		}
 
 		return collegeList; 
+	}
+	
+	public static List<MajorsPerDegree> getMajorsPerDegreeBySchoolName(CollegeSearchCriteria criteria)
+			throws IOException {
+		String queryString = "";
+		if (criteria.getSchoolName() != null) {
+			queryString = "school-name:" + "\"" + criteria.getSchoolName() + "\"";
+		}
+
+		SolrQuery query = new SolrQuery();
+		query.set("q", queryString);
+		query.set("fl", SOLR_FIELD_MAJORS_PER_DEGREE);
+		query.set("rows", SOLR_MAX_RETURNED_DOCS);
+		ArrayList<MajorsPerDegree> degreeCountList = new ArrayList<MajorsPerDegree>();
+		
+		try {
+			QueryResponse response = solr.query(query);
+			SolrDocumentList results = response.getResults();
+			String countStr = (String)results.get(0).get(SOLR_FIELD_MAJORS_PER_DEGREE);
+			/*for (int i = 0; i < results.size(); ++i) {
+			      System.out.println(results.get(i));
+			}*/
+			String[] countStrArray = countStr.split(",");
+			if (countStrArray.length == 5) {
+				degreeCountList.add(new MajorsPerDegree("Certificate", countStrArray[0]));
+				degreeCountList.add(new MajorsPerDegree("Associate", countStrArray[1]));
+				degreeCountList.add(new MajorsPerDegree("Bachelor", countStrArray[2]));
+				degreeCountList.add(new MajorsPerDegree("Master", countStrArray[3]));
+				degreeCountList.add(new MajorsPerDegree("Ph.D", countStrArray[4]));
+			}
+		} catch (SolrServerException e) {
+			e.printStackTrace();
+		}
+		
+		return degreeCountList;
 	}
 }

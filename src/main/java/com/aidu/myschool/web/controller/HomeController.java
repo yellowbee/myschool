@@ -3,19 +3,11 @@ package com.aidu.myschool.web.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.solr.client.solrj.SolrClient;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.HttpSolrClient;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.CollegeSearchCriteria;
+import com.aidu.myschool.domain.MajorsPerDegree;
 import com.aidu.myschool.solr.SolrUtil;
-import com.aidu.myschool.util.PropertiesUtil;
 
 @Controller
 public class HomeController {
@@ -122,5 +114,12 @@ public class HomeController {
 			@RequestBody CollegeSearchCriteria criteria) throws IOException {
 
 		return SolrUtil.getCollegeListBySearchCriteria(criteria);
+	}
+	
+	@RequestMapping(value = "/get-school-stats", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<MajorsPerDegree> getSchoolStats(
+			@RequestBody CollegeSearchCriteria criteria) throws IOException {
+
+		return SolrUtil.getMajorsPerDegreeBySchoolName(criteria);
 	}
 }

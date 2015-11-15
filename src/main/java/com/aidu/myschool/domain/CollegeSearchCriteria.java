@@ -7,6 +7,7 @@ public class CollegeSearchCriteria {
 	private List<String> majors;
 	private String srcInstCtrl;
 	private String classUndergrad;
+	private String schoolName;
 	
 	public List<String> getStates() {
 		return states;
@@ -38,5 +39,13 @@ public class CollegeSearchCriteria {
 
 	public void setClassUndergrad(String classUndergrad) {
 		this.classUndergrad = classUndergrad;
+	}
+
+	public String getSchoolName() {
+		return schoolName;
+	}
+
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
 	}
 }
