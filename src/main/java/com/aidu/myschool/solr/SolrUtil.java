@@ -105,11 +105,21 @@ public class SolrUtil {
 			}*/
 			String[] countStrArray = countStr.split(",");
 			if (countStrArray.length == 5) {
-				degreeCountList.add(new MajorsPerDegree("Certificate", countStrArray[0]));
-				degreeCountList.add(new MajorsPerDegree("Associate", countStrArray[1]));
-				degreeCountList.add(new MajorsPerDegree("Bachelor", countStrArray[2]));
-				degreeCountList.add(new MajorsPerDegree("Master", countStrArray[3]));
-				degreeCountList.add(new MajorsPerDegree("Ph.D", countStrArray[4]));
+				if (!"0".equals(countStrArray[0])) {
+					degreeCountList.add(new MajorsPerDegree("证书", countStrArray[0]));
+				}
+				if (!"0".equals(countStrArray[1])) {
+					degreeCountList.add(new MajorsPerDegree("大专", countStrArray[1]));
+				}
+				if (!"0".equals(countStrArray[2])) {
+					degreeCountList.add(new MajorsPerDegree("本科", countStrArray[2]));
+				}
+				if (!"0".equals(countStrArray[3])) {
+					degreeCountList.add(new MajorsPerDegree("硕士", countStrArray[3]));
+				}
+				if (!"0".equals(countStrArray[4])) {
+					degreeCountList.add(new MajorsPerDegree("博士", countStrArray[4]));
+				}
 			}
 		} catch (SolrServerException e) {
 			e.printStackTrace();
