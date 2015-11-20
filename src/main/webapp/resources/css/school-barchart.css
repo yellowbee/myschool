@@ -1,0 +1,21 @@
+.bar rect {
+    fill: steelblue;
+}
+
+.bar text.count {
+    fill: white;
+    font: 12px sans-serif;
+}
+
+.axis {
+    shape-rendering: crispEdges;
+    font: 12px sans-serif;
+}
+
+.axis path {
+    fill: none;
+}
+
+.y.axis path {
+    stroke: black;
+}
