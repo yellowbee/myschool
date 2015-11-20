@@ -72,15 +72,23 @@
 				      }),
 				      dataType: 'json',
 				      success: function(result) {
-						  $('#pieChart').empty();
-						  
-						  /* drawPieChart('#pieChart', [
-				        	                           { label: "Bachelor", count: 210 },
-				        	                           { label: "Master", count: 110},
-				        	                           { label: "Ph.D", count: 53}
-				        	                       		]); */
-				          drawPieChart('#pieChart', result);
+				    	  if (result[0].status == 'UNAUTHENTICATED') {
+				    		  window.location.href = "http://localhost:8060/myschool/home";
+				    	  }
+				    	  else {
+							  $('#pieChart').empty();
+							  
+							  /* drawPieChart('#pieChart', [
+					        	                           { label: "Bachelor", count: 210 },
+					        	                           { label: "Master", count: 110},
+					        	                           { label: "Ph.D", count: 53}
+					        	                       		]); */
+					          drawPieChart('#pieChart', result);
 				          switchTabPane(ev);
+				    	  }
+				      },
+				      error: function(xhr, textStatus, errorThrown) {
+				    	  window.location.href = "http://localhost:8060/myschool/home";
 				      }
 				});     	
 	        }
@@ -250,8 +258,8 @@
                 <div class="col-md-6 col-lg-6">
                     <div class="tab-content" style="margin-left:20px">
                         <div class="tab-pane active" id="test_scores">
-                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Test Scores</h3>
-                            <p>Find Colleges where your SAT and/or ACT scores are close matches or above:</p>
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">标准化考试成绩</h3>
+                            <p>输入你的ACT和SAT成绩:</p>
                             <div style="margin-top: 20px">
 						        <p>
 						            <label for="satScore">我的SAT成绩:</label>
@@ -270,59 +278,56 @@
 
                         </div>
                         <div class="tab-pane" id="type_of_school">
-                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Type of School</h3>
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">学校类型</h3>
                             <table cellpadding="10" style="width:100%">
                                 <tr>
-                                    <td style="padding-bottom: 10px"><h5>2-year or 4-year</h5></td>
+                                    <td style="padding-bottom: 10px"><h5>两年制或四年制</h5></td>
                                     <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">2-year/community<br/>colllege</label>
+                                        <label><input type="checkbox">两年制大专<br/>colllege</label>
                                     </div></td>
                                     <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">4-year college or<br/>university</label>
-                                    </div></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-bottom: 10px"><h5>Public or Private</h5></td>
-                                    <td style="padding-bottom: 10px"><label class="radio-inline">
-                                        <input type="radio" name="srcRadios" value="Public">Public</label>
-                                    </td>
-                                    <td style="padding-bottom: 10px"><label class="radio-inline">
-                                        <input type="radio" name="srcRadios" value="Private">Private</label>
-                                    </td>
-                                    <td style="padding-bottom: 10px"><label class="radio-inline">
-                                        <input type="radio" name="srcRadios" value="Dontcare">Don't care</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-bottom: 10px"><h5>School Size</h5></td>
-                                    <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">Small(<2,000)</label>
-                                    </div></td>
-                                    <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">Medium<br/>(2,000 - 15,000)</label>
-                                    </div></td>
-                                    <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">Large(>15,000)</label>
+                                        <label><input type="checkbox">四年制本科</label>
                                     </div></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-bottom: 10px"><h5>Single-sex or Coed</h5></td>
+                                    <td style="padding-bottom: 10px"><h5>公立或私立</h5></td>
                                     <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">Coed</label>
+                                        <label><input type="checkbox" value="Public">公立</label>
                                     </div></td>
                                     <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">All Women</label>
+                                        <label><input type="checkbox" value="Public">公立</label>
+                                    </div></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-bottom: 10px"><h5>学校规模</h5></td>
+                                    <td style="padding-bottom: 10px"><div class="checkbox">
+                                        <label><input type="checkbox">小型(<2,000)</label>
                                     </div></td>
                                     <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox">All Men</label>
+                                        <label><input type="checkbox">中型<br/>(2,000 - 15,000)</label>
+                                    </div></td>
+                                    <td style="padding-bottom: 10px"><div class="checkbox">
+                                        <label><input type="checkbox">大型(>15,000)</label>
+                                    </div></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-bottom: 10px"><h5>是否男女同校</h5></td>
+                                    <td style="padding-bottom: 10px"><div class="checkbox">
+                                        <label><input type="checkbox">男女同校</label>
+                                    </div></td>
+                                    <td style="padding-bottom: 10px"><div class="checkbox">
+                                        <label><input type="checkbox">女子学校</label>
+                                    </div></td>
+                                    <td style="padding-bottom: 10px"><div class="checkbox">
+                                        <label><input type="checkbox">男子学校</label>
                                     </div></td>
                                 </tr>
                             </table>
 
                         </div>
                         <div class="tab-pane" id="location">
-                            <h3 style="border-bottom: solid 1px gray; padding: 5px">Location</h3>
-                            <p>Choose as many as you like:</p>
+                            <h3 style="border-bottom: solid 1px gray; padding: 5px">学校所在地</h3>
+                            <p>输入你感兴趣的学校所在的州，可以输入多个：</p>
 
                             <div id="map-box">
                                 <img src="resources/images/map-us.png" width="610" height="373" border="0" usemap="#usa_map" style="margin-left: 10%"/>
@@ -394,7 +399,7 @@
 
                         </div>
                         <div class="tab-pane" id="majors">
-                        	<h3 style="border-bottom: solid 1px gray; padding: 5px">Majors</h3>
+                        	<h3 style="border-bottom: solid 1px gray; padding: 5px">专业</h3>
                             <p>You would like to major in:</p>
                         	<div class="bs-example">
                                 <input id="major-input" type="text" class="typeahead tt-query" autocomplete="off" spellcheck="false">

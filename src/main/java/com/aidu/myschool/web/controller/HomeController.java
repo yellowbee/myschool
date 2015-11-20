@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.aidu.myschool.domain.AjaxResponse;
 import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.CollegeSearchCriteria;
 import com.aidu.myschool.domain.MajorsPerDegree;
+import com.aidu.myschool.domain.ResponseStatus;
 import com.aidu.myschool.solr.SolrUtil;
 
 @Controller
@@ -41,12 +43,12 @@ public class HomeController {
 	
 	@RequestMapping(value = "/find_my_college", method = RequestMethod.GET)
 	public ModelAndView findMyCollege(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		HttpSession session = request.getSession(false);
+		//HttpSession session = request.getSession(false);
 		
 		// if user has not loggin in yet or already logged out
-		if (session == null || session.getAttribute("user") == null) {
+		/*if (session == null || session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:login");
-		}
+		}*/
 		return new ModelAndView("find_my_college");
 	}
 	
@@ -117,9 +119,18 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/get-school-stats", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<MajorsPerDegree> getSchoolStats(
+	public @ResponseBody List<AjaxResponse> getSchoolStats(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody CollegeSearchCriteria criteria) throws IOException {
 
+		HttpSession session = request.getSession(false);
+		
+		//if user has not loggin in yet or already logged out
+		if (session == null || session.getAttribute("user") == null) {
+			List<AjaxResponse> result = new ArrayList<AjaxResponse>();
+			result.add(new ResponseStatus("UNAUTHENTICATED"));
+			return result;
+		}
+		
 		return SolrUtil.getMajorsPerDegreeBySchoolName(criteria);
 	}
 }

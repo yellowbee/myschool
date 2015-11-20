@@ -12,6 +12,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
+import com.aidu.myschool.domain.AjaxResponse;
 import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.CollegeSearchCriteria;
 import com.aidu.myschool.domain.MajorsPerDegree;
@@ -83,7 +84,7 @@ public class SolrUtil {
 		return collegeList; 
 	}
 	
-	public static List<MajorsPerDegree> getMajorsPerDegreeBySchoolName(CollegeSearchCriteria criteria)
+	public static List<AjaxResponse> getMajorsPerDegreeBySchoolName(CollegeSearchCriteria criteria)
 			throws IOException {
 		String queryString = "";
 		if (criteria.getSchoolName() != null) {
@@ -94,7 +95,7 @@ public class SolrUtil {
 		query.set("q", queryString);
 		query.set("fl", SOLR_FIELD_MAJORS_PER_DEGREE);
 		query.set("rows", SOLR_MAX_RETURNED_DOCS);
-		ArrayList<MajorsPerDegree> degreeCountList = new ArrayList<MajorsPerDegree>();
+		List<AjaxResponse> degreeCountList = new ArrayList<AjaxResponse>();
 		
 		try {
 			QueryResponse response = solr.query(query);

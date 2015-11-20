@@ -28,9 +28,9 @@ public class LoginController {
 	@Qualifier("userDao")
 	private UserDao userDao;
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET)
+	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView login() {
-		ModelAndView model = new ModelAndView("login");
+		ModelAndView model = new ModelAndView("home");
 		model.addObject("signUpForm", new SignUpForm());
 		model.addObject("loginForm", new LoginForm());
 		model.addObject("visibility", "hidden");
@@ -41,7 +41,7 @@ public class LoginController {
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);
 		if (session != null) session.invalidate();
-		return new ModelAndView("redirect:login");
+		return new ModelAndView("redirect:home");
 	}
 	
 	@RequestMapping(value="/signUp", method = RequestMethod.POST)
@@ -94,7 +94,7 @@ public class LoginController {
 			if (PasswordHash.validatePassword(loginForm.getPassword(), results.get(0).getPasswordHash())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", results.get(0));
-				mav = new ModelAndView("home");
+				mav = new ModelAndView("find_my_college");
 				mav.addObject("user", results.get(0));
 			}
 			else {

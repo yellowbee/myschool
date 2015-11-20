@@ -48,9 +48,6 @@ html, body {
 	right: 10px;
 }
 #sign_in {
-	position: absolute;
-	top: 50%;
-	left: 25%;
 	/* margin-right: -50%;
 	transform: translate(-50%, -50%); */
 }
