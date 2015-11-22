@@ -83,7 +83,7 @@ public class LoginController {
 		ModelAndView mav = null;
 		List<User> results = userDao.getUserByEmail(loginForm.getUsername());
 		if (results.size() == 0) {
-			mav = new ModelAndView("login");
+			mav = new ModelAndView("home");
 			mav.addObject("signUpForm", new SignUpForm());
 			mav.addObject("loginForm", new LoginForm());
 			mav.addObject("visibility", "visible");
@@ -96,9 +96,11 @@ public class LoginController {
 				session.setAttribute("user", results.get(0));
 				mav = new ModelAndView("find_my_college");
 				mav.addObject("user", results.get(0));
+				mav.addObject("unlogged", "display-none");
+				mav.addObject("logged", "display-inline");
 			}
 			else {
-				mav = new ModelAndView("login");
+				mav = new ModelAndView("home");
 				mav.addObject("signUpForm", new SignUpForm());
 				mav.addObject("loginForm", new LoginForm());
 				mav.addObject("visibility", "visible");

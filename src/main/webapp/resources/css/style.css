@@ -73,12 +73,17 @@ html, body {
   vertical-align: middle;
 }
 
-visible {
+.visible {
 	visibility: visible
 }
-
-visible {
+.hidden {
 	visibility: hidden
+}
+.display-none {
+	display: none
+}
+.display-inline {
+	display: inline
 }
 
 /* Bootstrap typeahead */
@@ -110,6 +115,6 @@ visible {
 /* IE 6 doesn't support max-height
  * we use height instead, but this forces the menu to always be this tall
  */
-* html .ui-autocomplete {
+html .ui-autocomplete {
     height: 100px;
 }

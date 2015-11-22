@@ -49,7 +49,20 @@ public class HomeController {
 		/*if (session == null || session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:login");
 		}*/
-		return new ModelAndView("find_my_college");
+		HttpSession session = request.getSession(false);
+		
+		ModelAndView mav = new ModelAndView("find_my_college");
+		//if user has not loggin in yet or already logged out
+		if (session == null || session.getAttribute("user") == null) {
+			mav.addObject("logged", "display-none");
+			mav.addObject("unlogged", "display-inline");
+		}
+		else {
+			mav.addObject("unlogged", "display-none");
+			mav.addObject("logged", "display-inline");
+		}
+		
+		return mav;
 	}
 	
 	@RequestMapping(value = "/my_app", method = RequestMethod.GET)

@@ -1,7 +1,7 @@
 <%-- <%@ page isELIgnored="false" %> --%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 <t:new_template>
 	<jsp:attribute name="script">
@@ -238,6 +238,20 @@
 	</jsp:attribute>
 	<jsp:attribute name="a_fragment">
 		<div>
+		<div class="row">
+			<div class="col-md-2 col-lg-2"></div>
+			<div class="col-md-8 col-lg-8">
+				<div style="float:right; margin-top:10px" class="${logged}">
+					<span style="margin-right: 20px">Hi&nbsp;<c:out value="${user.firstName}" /></span>
+					<span><a href="logout">&nbsp;登出&nbsp;</a></span>
+				</div>
+				<div style="float:right; margin-top:10px" class="${unlogged}">
+					<span style="margin-right: 20px">登录</span>
+					<span><a href="logout">&nbsp;注册&nbsp;</a></span>
+				</div>
+			</div>
+			<div class="col-md-2 col-lg-2"></div>
+		</div>
 		<div class="row" style="margin-top: 30px">
 			<div class="col-md-2 col-lg-2"></div>
                 <div class="col-md-10 col-lg-10"><h3>搜索我的大学</h3></div>

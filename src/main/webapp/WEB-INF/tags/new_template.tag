@@ -83,10 +83,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						    </span>
                         </div>
                     </div>
-					<div style="float:right; margin-top:10px">
+					<%-- <div style="float:right; margin-top:10px">
 						<span style="margin-right: 20px">Hi&nbsp;<c:out value="${user.firstName}" /></span>
 						<span><a href="logout">&nbsp;登出&nbsp;</a></span>
-					</div>
+					</div> --%>
 
                 </div>
                 <div class="col-md-2 col-lg-2"></div>
