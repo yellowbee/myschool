@@ -72,7 +72,7 @@
                             </div>
 
                             <div style="background-color:#eee;margin:0px;padding:10px 20px">
-                                <h5>忘了用户名和密码了？</h5>
+                                <a href="javascript:;"><h5>忘了用户名和密码了？</h5></a>
                             </div>
 
                         </div>

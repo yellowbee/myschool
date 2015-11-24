@@ -6,5 +6,6 @@ create table usr (
   lst_name varchar(32) not null,
   email varchar(128) not null,
   passwd_hash varchar(102) not null,
-  primary key (usr_id)
-);
+  primary key (usr_id),
+  unique key x_email (email)
+) ENGINE=INNODB;
