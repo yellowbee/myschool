@@ -58,7 +58,7 @@
                                         <input type="submit" class="btn btn-primary" value="登&nbsp;&nbsp;录" />
                                     </div>
                                     <div class="col-xs-8">
-                                        <a href="javascript:;"><h5>注&nbsp;&nbsp;册</h5></a>
+                                        <!-- <a href="javascript:;"><h5>注&nbsp;&nbsp;册</h5></a> -->
                                     </div>
                                 </div>
 
@@ -71,6 +71,54 @@
                             </form:form>
                             </div>
 
+							<a href="#signup_modal" class="btn btn-lg btn-primary" data-toggle="modal">注&nbsp;&nbsp;册</a>
+								<div id="signup_modal" class="modal fade">
+							        <div class="modal-dialog">
+							            <div class="modal-content">
+							                <div class="modal-header">
+							                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							                    <h4 class="modal-title">Confirmation</h4>
+							                </div>
+							                <div class="modal-body">
+							                   <form:form action="signUp" method="post" commandName="signUpForm" class="form-horizontal">
+											        <div class="form-group">
+											            <label for="inputEmail" class="control-label col-xs-2">Email</label>
+											            <div class="col-xs-10">
+											                <form:input type="email" path="email" class="form-control" id="inputEmail" placeholder="Email" />
+											            </div>
+											        </div>
+											        <div class="form-group">
+											            <label for="inputPassword" class="control-label col-xs-2">Password</label>
+											            <div class="col-xs-10">
+											                <form:password path="password" class="form-control" id="inputPassword" placeholder="Password" />
+											            </div>
+											        </div>
+											        <div class="form-group">
+											            <label for="inputFirstName" class="control-label col-xs-2">First Name</label>
+											            <div class="col-xs-10">
+											                <form:input path="firstName" class="form-control" id="inputFirstName" placeholder="First Name" />
+											            </div>
+											        </div>
+											        <div class="form-group">
+											            <label for="inputLastName" class="control-label col-xs-2">Last Name</label>
+											            <div class="col-xs-10">
+											                <form:input path="lastName" class="form-control" id="inputLastName" placeholder="Last Name" />
+											            </div>
+											        </div>
+											        <div class="form-group">
+											            <div class="col-xs-offset-2 col-xs-10">
+											                <button type="submit" class="btn btn-primary">Sign Up</button>
+											            </div>
+											        </div>
+											    </form:form>
+							                </div>
+							                <div class="modal-footer">
+							                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							                </div>
+							            </div>
+							        </div>
+							    </div> <!-- signup_modal -->
+							    
                             <div style="background-color:#eee;margin:0px;padding:10px 20px">
                                 <a href="javascript:;"><h5>忘了用户名和密码了？</h5></a>
                             </div>
