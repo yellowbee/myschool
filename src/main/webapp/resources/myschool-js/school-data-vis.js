@@ -1,6 +1,4 @@
-function drawPieChart(domComp, dataset, size, pieRadius) {
-    var svgSize = size;
-    var radius = pieRadius;
+function drawPieChart(domComp, dataset, svgSize, radius) {
     var legendRectSize = 18;
     var legendSpace = 4;
     var colors = d3.scale.category20();
