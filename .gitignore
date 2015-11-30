@@ -2,3 +2,4 @@
 .jar
 target/
 src/main/webapp/WEB-INF/applicationContext.xml
+/notes
