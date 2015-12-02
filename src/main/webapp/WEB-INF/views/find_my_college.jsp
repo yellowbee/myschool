@@ -9,7 +9,9 @@
 		<script src="resources/myschool-js/state-eng-2-chn.js"></script>
 		<script src="resources/d3.min.js"></script>
 		<script src="resources/myschool-js/school-data-vis.js"></script>
+		<script src="resources/myschool-js/school-barchart.js"></script>
 		<link rel="stylesheet" type="text/css" href="resources/css/school-piechart.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/school-barchart.css" />
 		<script type="text/javascript">
 	        var selected_state_set = {};
 	        var selected_major_set = {};
@@ -83,8 +85,11 @@
 					        	                           { label: "Master", count: 110},
 					        	                           { label: "Ph.D", count: 53}
 					        	                       		]); */
-					          drawPieChart('#pieChart', result);
-				          switchTabPane(ev);
+					          drawPieChart('#pieChart', result[0].majorsPerDegreeList, 300, 120);
+					          $('#barChart').empty();
+					          drawBarChart('#barChart', result[1].enrollment, 1000, 100);
+					          
+				          	  switchTabPane(ev);
 				    	  }
 				      },
 				      error: function(xhr, textStatus, errorThrown) {
@@ -459,28 +464,6 @@
                                 有约23300个别学生;其他五个校区拥有约10,000结合;和电子教学有大约5900学生个人。总共39201人已报名参加课程相当于30878名全职出席会议。</h4></p>
                             </div>
                             </div>
-
-							<div class="fact-container">
-                        	<div class="fact">
-                        		<div class="left-note">
-	                                <svg class="paperclip" enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
-	                                    <path class="behind" d="M54,18.3c1.8,1.6,3,4,3,6.7" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
-                                        <path class="in-front" d="M57,38v41.1c0,4.9-4,8.9-8.9,8.9h-0.1
-                                           C43,88,39,84,39,79.1V24.9c0-4.9,4-8.9,8.9-8.9h0.1c2.3,0,4.4,0.9,6,2.3" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
-                                    </svg>
-                                    <span>学校数据</span>
-                                </div>
-	                            <h5>Quick Facts</h5>
-	                            <h1>Large</h1>
-	                            <h6>35,000 total undergrads <br/> 8,000 degree-seeking freshman</h6>
-	                            <h1>$12,526 average financial aid</h1>
-	                            <h6>65% of financial need met <br/> Tuition and fees $10,957 in-state, $29,421 out-of-state</h6>
-	                            <hr/>
-	                            <h5>Location</h5>
-	                            <h5>Main Address</h5>
-	                            <h6>120 Chubb Hall <br/> Athens, OH 45701-2979 <br/> www.ohio.edu</h6>
-							</div>
-							</div>
 							
                             <div class="fact-container">
                         	<div class="fact">
@@ -493,6 +476,20 @@
                                     <span>学校图表</span>
                                 </div>
                             	<div id="pieChart" style="margin-left:auto;margin-right:auto"></div>
+                            </div>
+                            </div>
+                            
+                            <div class="fact-container">
+                            <div class="fact">
+                                <div class="left-note">
+                                    <svg class="paperclip" enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+                                        <path class="behind" d="M54,18.3c1.8,1.6,3,4,3,6.7" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
+                                        <path class="in-front" d="M57,38v41.1c0,4.9-4,8.9-8.9,8.9h-0.1
+                                           C43,88,39,84,39,79.1V24.9c0-4.9,4-8.9,8.9-8.9h0.1c2.3,0,4.4,0.9,6,2.3" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
+                                    </svg>
+                                    <span>学校图表</span>
+                                </div>
+                                <div id="barChart"></div>
                             </div>
                             </div>
 						</div>

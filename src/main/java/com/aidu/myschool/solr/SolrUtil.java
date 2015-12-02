@@ -15,7 +15,9 @@ import org.apache.solr.common.SolrDocumentList;
 import com.aidu.myschool.domain.AjaxResponse;
 import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.CollegeSearchCriteria;
-import com.aidu.myschool.domain.MajorsPerDegree;
+import com.aidu.myschool.domain.Enrollment;
+import com.aidu.myschool.domain.MajorsPerDegreeList;
+import com.aidu.myschool.domain.Pair;
 import com.aidu.myschool.util.PropertiesUtil;
 
 public class SolrUtil {
@@ -24,8 +26,11 @@ public class SolrUtil {
 	final private static String SOLR_FIELD_SHCOOL_NAME = "school-name";
 	final private static String SOLR_FIELD_CITY = "city";
 	final private static String SOLR_FIELD_MAJORS_PER_DEGREE = "majors-by-degrees-ratio";
+	final private static String RECEIVED_UNDERGRAD = "rcvd_undergrad";
+	final private static String ACCEPTED_UNDERGRAD = "axptd_undergrad";
+	final private static String ENROLLED_UNDERGRAD = "enrld_undergrad";
 	final private static int SOLR_MAX_RETURNED_DOCS = 100000;
-			
+	
 	final private static String url = "http://localhost:8983/solr/collection1";
 	private static SolrClient solr = new HttpSolrClient(url);
 	private static PropertiesUtil propUtil = new PropertiesUtil();
@@ -93,7 +98,7 @@ public class SolrUtil {
 
 		SolrQuery query = new SolrQuery();
 		query.set("q", queryString);
-		query.set("fl", SOLR_FIELD_MAJORS_PER_DEGREE);
+		query.set("fl", SOLR_FIELD_MAJORS_PER_DEGREE + "," + RECEIVED_UNDERGRAD + "," + ACCEPTED_UNDERGRAD + "," + ENROLLED_UNDERGRAD);
 		query.set("rows", SOLR_MAX_RETURNED_DOCS);
 		List<AjaxResponse> degreeCountList = new ArrayList<AjaxResponse>();
 		
@@ -104,24 +109,36 @@ public class SolrUtil {
 			/*for (int i = 0; i < results.size(); ++i) {
 			      System.out.println(results.get(i));
 			}*/
+			MajorsPerDegreeList majorsPerDegreeList = new MajorsPerDegreeList();
 			String[] countStrArray = countStr.split(",");
 			if (countStrArray.length == 5) {
 				if (!"0".equals(countStrArray[0])) {
-					degreeCountList.add(new MajorsPerDegree("证书", countStrArray[0]));
+					majorsPerDegreeList.getMajorsPerDegreeList().add(new Pair("证书", countStrArray[0]));
 				}
 				if (!"0".equals(countStrArray[1])) {
-					degreeCountList.add(new MajorsPerDegree("大专", countStrArray[1]));
+					majorsPerDegreeList.getMajorsPerDegreeList().add(new Pair("大专", countStrArray[1]));
 				}
 				if (!"0".equals(countStrArray[2])) {
-					degreeCountList.add(new MajorsPerDegree("本科", countStrArray[2]));
+					majorsPerDegreeList.getMajorsPerDegreeList().add(new Pair("本科", countStrArray[2]));
 				}
 				if (!"0".equals(countStrArray[3])) {
-					degreeCountList.add(new MajorsPerDegree("硕士", countStrArray[3]));
+					majorsPerDegreeList.getMajorsPerDegreeList().add(new Pair("硕士", countStrArray[3]));
 				}
 				if (!"0".equals(countStrArray[4])) {
-					degreeCountList.add(new MajorsPerDegree("博士", countStrArray[4]));
+					majorsPerDegreeList.getMajorsPerDegreeList().add(new Pair("博士", countStrArray[4]));
 				}
+				degreeCountList.add(majorsPerDegreeList);
 			}
+			
+			String rcvd_undergrad = ((String)results.get(0).get(RECEIVED_UNDERGRAD)).replace(",", "");
+			String axptd_undergrad = ((String)results.get(0).get(ACCEPTED_UNDERGRAD)).replace(",", "");
+			String enrld_undergrad = ((String)results.get(0).get(ENROLLED_UNDERGRAD)).replace(",", "");
+			Enrollment enrollment = new Enrollment();
+			enrollment.getEnrollment().add(new Pair("申请人数", rcvd_undergrad));
+			enrollment.getEnrollment().add(new Pair("录取人数", axptd_undergrad));
+			enrollment.getEnrollment().add(new Pair("入学人数", enrld_undergrad));
+			degreeCountList.add(enrollment);
+			
 		} catch (SolrServerException e) {
 			e.printStackTrace();
 		}

@@ -22,10 +22,11 @@ public class UserDaoImpl implements UserDao {
 		entityManager.persist(user);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<User> getUserByEmail(String email) {
 		Query query = entityManager.createNamedQuery("user.find.password.by.email", User.class);
 		query.setParameter("email", email);
-		return  query.getResultList();
+		return  (List<User>)query.getResultList();
 	}
 	
 	

@@ -1,10 +1,10 @@
 package com.aidu.myschool.domain;
 
-public class MajorsPerDegree implements AjaxResponse {
+public class Pair {
 	private String label;
 	private String count;
 	
-	public MajorsPerDegree(String label, String count) {
+	public Pair(String label, String count) {
 		this.label = label;
 		this.count = count;
 	}

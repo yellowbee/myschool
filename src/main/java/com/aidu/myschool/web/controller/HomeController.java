@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.aidu.myschool.domain.AjaxResponse;
 import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.CollegeSearchCriteria;
-import com.aidu.myschool.domain.MajorsPerDegree;
+import com.aidu.myschool.domain.Pair;
 import com.aidu.myschool.domain.ResponseStatus;
 import com.aidu.myschool.solr.SolrUtil;
 
