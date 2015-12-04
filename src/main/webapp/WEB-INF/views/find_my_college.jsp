@@ -2,6 +2,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib uri="/WEB-INF/myschool.tld" prefix="ms" %>
 
 <t:new_template>
 	<jsp:attribute name="script">
@@ -87,7 +88,8 @@
 					        	                       		]); */
 					          drawPieChart('#pieChart', result[0].majorsPerDegreeList, 300, 120);
 					          $('#barChart').empty();
-					          drawBarChart('#barChart', result[1].enrollment, 1000, 100);
+
+					          drawBarChart('#barChart', result[1].enrollment, 300, 60);
 					          
 				          	  switchTabPane(ev);
 				    	  }
@@ -448,50 +450,18 @@
                         <div class="tab-pane" id="school_report">
                         	<div id="backToResult"><a href="javascript:;">Back to Search Result</a></div>
                         	
-                        	<div class="fact-container">
-                        	<div class="fact">
-                        		<div class="left-note">
-	                                <svg class="paperclip" enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
-	                                    <path class="behind" d="M54,18.3c1.8,1.6,3,4,3,6.7" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
-                                        <path class="in-front" d="M57,38v41.1c0,4.9-4,8.9-8.9,8.9h-0.1
-                                           C43,88,39,84,39,79.1V24.9c0-4.9,4-8.9,8.9-8.9h0.1c2.3,0,4.4,0.9,6,2.3" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
-                                    </svg>
-                                    <span>学校概况</span>
-                                </div>
-                                <img src="resources/images/ou_arial_view.jpg" style="width:50%;display:block;margin-left:auto;margin-right:auto;margin-bottom: 30px"/>
+                            <ms:factContainer>
+                            	<img src="resources/images/ou_arial_view.jpg" style="width:50%;display:block;margin-left:auto;margin-right:auto;margin-bottom: 30px"/>
                                 <p><h4>俄亥俄大学是位于主要在1,850英亩（7.5平方公里）的校园在雅典，俄亥俄州，美国一个主要的美国公立研究型大学。
                                 作为美国历史最悠久的大学之一，俄亥俄州立大学被特许在1804年2月18日， [ 3 ]和开放学生1809 [4] 2014年，雅典校园拥
                                 有约23300个别学生;其他五个校区拥有约10,000结合;和电子教学有大约5900学生个人。总共39201人已报名参加课程相当于30878名全职出席会议。</h4></p>
-                            </div>
-                            </div>
-							
-                            <div class="fact-container">
-                        	<div class="fact">
-                        		<div class="left-note">
-	                                <svg class="paperclip" enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
-	                                    <path class="behind" d="M54,18.3c1.8,1.6,3,4,3,6.7" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
-                                        <path class="in-front" d="M57,38v41.1c0,4.9-4,8.9-8.9,8.9h-0.1
-                                           C43,88,39,84,39,79.1V24.9c0-4.9,4-8.9,8.9-8.9h0.1c2.3,0,4.4,0.9,6,2.3" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
-                                    </svg>
-                                    <span>学校图表</span>
-                                </div>
+                            </ms:factContainer>
+                            <ms:factContainer>
                             	<div id="pieChart" style="margin-left:auto;margin-right:auto"></div>
-                            </div>
-                            </div>
-                            
-                            <div class="fact-container">
-                            <div class="fact">
-                                <div class="left-note">
-                                    <svg class="paperclip" enable-background="new 0 0 100 100" version="1.1" viewBox="0 0 100 100" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
-                                        <path class="behind" d="M54,18.3c1.8,1.6,3,4,3,6.7" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
-                                        <path class="in-front" d="M57,38v41.1c0,4.9-4,8.9-8.9,8.9h-0.1
-                                           C43,88,39,84,39,79.1V24.9c0-4.9,4-8.9,8.9-8.9h0.1c2.3,0,4.4,0.9,6,2.3" fill="none" stroke-miterlimit="10" stroke-width="3" stroke="#CC3333"></path>
-                                    </svg>
-                                    <span>学校图表</span>
-                                </div>
-                                <div id="barChart"></div>
-                            </div>
-                            </div>
+                            </ms:factContainer>
+						    <ms:factContainer>
+						    	<div id="barChart"></div>
+						    </ms:factContainer>
 						</div>
                     </div>
                 </div>

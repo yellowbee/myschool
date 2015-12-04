@@ -185,3 +185,34 @@ html .ui-autocomplete {
     font-weight: 700;
     margin-top: -10px;
 }
+
+.grad_rate-container {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+    background-color: #d3d6f3;
+    border: 3px solid #283259;
+    color: #283259;
+    height: 60px;
+    width: 80%;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.grad_rate-stat {
+    background-color: #283259;
+    color: white;
+    font-size: 2.6em;
+    font-weight: 600;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    width: 75px;
+}
+
+.grad_rate-details {
+    line-height: 1em;
+    margin-left: 80px;
+    padding-top: 10px;
+}
