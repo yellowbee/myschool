@@ -8,7 +8,7 @@ function drawBarChart(domComp, dataset, svgWidth, svgHeight) {
     var x = d3.scale.linear().range([0, svgWidth-labelLen-countLen]);
     var y = d3.scale.ordinal().rangeRoundBands([0, svgHeight],.1);
     var yAxis = d3.svg.axis().scale(y).orient("left").tickSize(0);
-    x.domain([0, d3.max(dataset, function(d) {return d.count;})]);
+    x.domain([0, d3.max(dataset, function(d) {return Number(d.count);})]);
     y.domain(dataset.map(function(d) {return d.label;}));
     var format = d3.format(",.0f");
 
