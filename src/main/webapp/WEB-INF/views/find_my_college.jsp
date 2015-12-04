@@ -2,7 +2,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%@ taglib uri="/WEB-INF/myschool.tld" prefix="ms" %>
+<%@ taglib uri="/WEB-INF/tld/myschool.tld" prefix="ms" %>
 
 <t:new_template>
 	<jsp:attribute name="script">
@@ -450,16 +450,16 @@
                         <div class="tab-pane" id="school_report">
                         	<div id="backToResult"><a href="javascript:;">Back to Search Result</a></div>
                         	
-                            <ms:factContainer>
+                            <ms:factContainer title="学校简介">
                             	<img src="resources/images/ou_arial_view.jpg" style="width:50%;display:block;margin-left:auto;margin-right:auto;margin-bottom: 30px"/>
                                 <p><h4>俄亥俄大学是位于主要在1,850英亩（7.5平方公里）的校园在雅典，俄亥俄州，美国一个主要的美国公立研究型大学。
                                 作为美国历史最悠久的大学之一，俄亥俄州立大学被特许在1804年2月18日， [ 3 ]和开放学生1809 [4] 2014年，雅典校园拥
                                 有约23300个别学生;其他五个校区拥有约10,000结合;和电子教学有大约5900学生个人。总共39201人已报名参加课程相当于30878名全职出席会议。</h4></p>
                             </ms:factContainer>
-                            <ms:factContainer>
+                            <ms:factContainer title="专业分布">
                             	<div id="pieChart" style="margin-left:auto;margin-right:auto"></div>
                             </ms:factContainer>
-						    <ms:factContainer>
+						    <ms:factContainer title="学生录取">
 						    	<div id="barChart"></div>
 						    </ms:factContainer>
 						</div>

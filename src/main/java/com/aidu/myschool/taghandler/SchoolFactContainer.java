@@ -8,6 +8,11 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.IterationTag;
 
 public class SchoolFactContainer extends BodyTagSupport {
+	private String title;
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
 	public int doStartTag() throws JspException {
 		try {
@@ -21,7 +26,7 @@ public class SchoolFactContainer extends BodyTagSupport {
             						out.print("<path class=\"in-front\" d=\"M57,38v41.1c0,4.9-4,8.9-8.9,8.9h-0.1");
             								out.print("C43,88,39,84,39,79.1V24.9c0-4.9,4-8.9,8.9-8.9h0.1c2.3,0,4.4,0.9,6,2.3\" fill=\"none\" stroke-miterlimit=\"10\" stroke-width=\"3\" stroke=\"#CC3333\"></path>");
             								out.print("</svg>");
-            										out.print("<span>学校图表</span>");
+            										out.print("<span>" + title + "</span>");
             												out.print("</div>");
 			return EVAL_BODY_BUFFERED;
 		} catch(IOException ioe) {
