@@ -6,6 +6,20 @@
     fill: white;
     font: 12px sans-serif;
 }
+g text.count {
+    fill: white;
+    font: 12px sans-serif;
+    font-weight: bold;
+}
+g text.sum {
+    fill: black;
+    font: 12px sans-serif;
+    font-weight: bold;
+}
+#legend text {
+    font: 14px sans-serif;
+    font-weight: bold;
+}
 
 .axis {
     shape-rendering: crispEdges;

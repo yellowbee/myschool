@@ -4,6 +4,7 @@
 function drawBarChart(domComp, dataset, svgWidth, svgHeight) {
     dataset.sort(function(a, b) {return b.count - a.count;});
     var labelLen = 80;
+    var maxCount = d3.max(dataset, function(d){return d.count;});
     var x = d3.scale.linear().range([0, svgWidth-labelLen]);
     var y = d3.scale.ordinal().rangeRoundBands([0, svgHeight],.1);
     var yAxis = d3.svg.axis().scale(y).orient("left").tickSize(0);

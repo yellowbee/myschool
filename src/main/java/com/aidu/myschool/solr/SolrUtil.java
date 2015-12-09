@@ -18,6 +18,7 @@ import com.aidu.myschool.domain.CollegeSearchCriteria;
 import com.aidu.myschool.domain.Enrollment;
 import com.aidu.myschool.domain.MajorsPerDegreeList;
 import com.aidu.myschool.domain.Pair;
+import com.aidu.myschool.domain.PairNum;
 import com.aidu.myschool.util.PropertiesUtil;
 
 public class SolrUtil {
@@ -134,9 +135,9 @@ public class SolrUtil {
 			String axptd_undergrad = ((String)results.get(0).get(ACCEPTED_UNDERGRAD)).replace(",", "");
 			String enrld_undergrad = ((String)results.get(0).get(ENROLLED_UNDERGRAD)).replace(",", "");
 			Enrollment enrollment = new Enrollment();
-			enrollment.getEnrollment().add(new Pair("申请人数", rcvd_undergrad));
-			enrollment.getEnrollment().add(new Pair("录取人数", axptd_undergrad));
-			enrollment.getEnrollment().add(new Pair("入学人数", enrld_undergrad));
+			enrollment.getEnrollment().add(new PairNum("申请人数", Integer.valueOf(rcvd_undergrad).intValue()));
+			enrollment.getEnrollment().add(new PairNum("录取人数", Integer.valueOf(axptd_undergrad).intValue()));
+			enrollment.getEnrollment().add(new PairNum("入学人数", Integer.valueOf(enrld_undergrad).intValue()));
 			degreeCountList.add(enrollment);
 			
 		} catch (SolrServerException e) {

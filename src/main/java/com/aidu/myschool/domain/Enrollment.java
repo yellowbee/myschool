@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Enrollment implements AjaxResponse {
-	private List<Pair> enrollment = null;
+	private List<PairNum> enrollment = null;
 
-	public List<Pair> getEnrollment() {
+	public List<PairNum> getEnrollment() {
 		if (enrollment == null) {
-			enrollment = new ArrayList<Pair>();
+			enrollment = new ArrayList<PairNum>();
 		}
 		return enrollment;
 	}
 
-	public void setEnrollment(List<Pair> enrollment) {
+	public void setEnrollment(List<PairNum> enrollment) {
 		this.enrollment = enrollment;
 	}
 	

@@ -6,100 +6,17 @@
 
 <t:new_template>
 	<jsp:attribute name="script">
+		<script src="resources/myschool-js/find-my-college.js"></script>
 		<script src="resources/myschool-js/prepopulated-values.js"></script>
 		<script src="resources/myschool-js/state-eng-2-chn.js"></script>
 		<script src="resources/d3.min.js"></script>
 		<script src="resources/myschool-js/school-data-vis.js"></script>
 		<script src="resources/myschool-js/school-barchart.js"></script>
+		<script src="resources/myschool-js/mixed-barchart.js"></script>
+    	<script src="resources/myschool-js/legend-category10.js"></script>
 		<link rel="stylesheet" type="text/css" href="resources/css/school-piechart.css" />
 		<link rel="stylesheet" type="text/css" href="resources/css/school-barchart.css" />
 		<script type="text/javascript">
-	        var selected_state_set = {};
-	        var selected_major_set = {};
-	        var src_inst_ctrl = null;
-	        
-	        function clickState(usState) {
-	            if (!(usState in selected_state_set)) {
-	                $('#selected_items').append(
-	                        "<div>" +
-	                        "<a href=\"javascript:;\"><img src=\"resources/images/removeX.png\" height=\"15px\" alt=\"" + usState +"\"" +"/></a>" +
-	                        "<span style=\"margin-left:5px\">" + g_state_eng_2_chn[usState] + "</span>" +
-	                        "</div>"
-	                );
-	                selected_state_set[usState] = true;
-	            }
-	        }
-	        
-	        function getSchoolTableCellHtml(name, city, state) {
-	        	var html = "<td style=\"padding-bottom: 10px;width: 25%;text-align:center\">" +
-								"<div class=\"panel panel-default\" style=\"margin:5px\">" +
-				                    "<div class=\"panel-body\">" +
-				                    	"<img src=\"resources/images/school_logo/" + name.replace(/\s/g, "-") + ".gif\" alt=\"school logo\"/>" +
-				                    	"<hr/>" +
-				                        "<div><span id=\"clickForInfo\" title=\"" + name + "\"><a href=\"javascript:;\"><h5>" + name + "</h5></a></span></div>" +
-				                        "<h5>" + city + "," + state + "</h5>" +
-				                        "<hr/>" +
-				                        "<button type=\"button\" class=\"btn btn-primary\">Add to List</button>" +
-				                    "</div>" +
-				                "</div>" +
-				            "</td>";
-				return html;
-	        }
-	        
-	        /* add an element with the label to the container if the label is not in the given set */
-	        function addUniqueEntry(set, label, container) {
-	        	if (!(label in set)) {
-                    $(container).append(
-                            "<div><a href=\"javascript:;\"><img src=\"resources/images/removeX.png\" height=\"15px\" /></a><span style=\"margin-left:5px\">" + label + "</span></div>"
-                    );
-                    set[label] = true;
-                }
-	        }
-	        
-	        function switchTabPane(ev) {
-	        	$(ev.data.offTab).removeClass("active");
-                $(ev.data.offPane).removeClass("active");
-               $(ev.data.onTab).addClass("active");
-                $(ev.data.onPane).addClass("active");
-	        }
-	        
-	        /* ev handler for clicking #clickForInfo */
-	        function showVisDataHandler(ev) {
-	        	/* request school info */
-	        	$.ajax({
-					  type: "POST",
-					  contentType: "application/json",
-				      url: 'get-school-stats',
-				      data: JSON.stringify({
-				         "schoolName": $(this).attr("title"),
-				      }),
-				      dataType: 'json',
-				      success: function(result) {
-				    	  if (result[0].status == 'UNAUTHENTICATED') {
-				    		  window.location.href = "http://localhost:8060/myschool/home";
-				    	  }
-				    	  else {
-							  $('#pieChart').empty();
-							  
-							  /* drawPieChart('#pieChart', [
-					        	                           { label: "Bachelor", count: 210 },
-					        	                           { label: "Master", count: 110},
-					        	                           { label: "Ph.D", count: 53}
-					        	                       		]); */
-					          drawPieChart('#pieChart', result[0].majorsPerDegreeList, 300, 120);
-					          $('#barChart').empty();
-
-					          drawBarChart('#barChart', result[1].enrollment, 300, 60);
-					          
-				          	  switchTabPane(ev);
-				    	  }
-				      },
-				      error: function(xhr, textStatus, errorThrown) {
-				    	  window.location.href = "http://localhost:8060/myschool/home";
-				      }
-				});     	
-	        }
-	        
 	        $(document).ready(function(){
 	        	$('#result_table').on('click', '#clickForInfo', {offTab:'#search_results',
 	        													offPane:'#see_results',
@@ -461,6 +378,39 @@
                             </ms:factContainer>
 						    <ms:factContainer title="学生录取">
 						    	<div id="barChart"></div>
+						    </ms:factContainer>
+						    <ms:factContainer title="在校生学业进度">
+						    	<div style="margin-top: 10px">
+                                <div class="grad_rate-container">
+                                    <div class="grad_rate-stat">68%</div>
+                                    <div class="grad_rate-details">
+                                        <span>reported that they often tried to understand someone else's point of view</span>
+                                    </div>
+                                </div>
+
+                                <div class="grad_rate-container">
+                                    <div class="grad_rate-stat">68%</div>
+                                    <div class="grad_rate-details">
+                                        <span>reported that they often tried to understand someone else's point of view</span>
+                                    </div>
+                                </div>
+
+                                <div class="grad_rate-container">
+                                    <div class="grad_rate-stat">68%</div>
+                                    <div class="grad_rate-details">
+                                        <span>reported that they often tried to understand someone else's point of view</span>
+                                    </div>
+                                </div>
+                                </div>
+						    </ms:factContainer>
+						    <ms:factContainer title="师资组成">
+						    	<div id="pieChart_faculty" style="margin-left:auto;margin-right:auto"></div>
+						    </ms:factContainer>
+						    <ms:factContainer title="学费">
+						    	<div id="mixedbarchart"></div>
+								<div id="legend"></div>
+						    </ms:factContainer>
+						    <ms:factContainer title="联系方式">
 						    </ms:factContainer>
 						</div>
                     </div>
