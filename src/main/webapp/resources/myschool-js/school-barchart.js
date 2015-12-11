@@ -1,14 +1,14 @@
 /**
- * Created by kevin on 11/17/2015.
+ * Created by kevin on 11/17/15.
  */
 function drawBarChart(domComp, dataset, svgWidth, svgHeight) {
     dataset.sort(function(a, b) {return b.count - a.count;});
-    var labelLen = 80;
-    var maxCount = d3.max(dataset, function(d){return d.count;});
-    var x = d3.scale.linear().range([0, svgWidth-labelLen]);
+    var labelLen = 70;
+    var countLen = 45;
+    var x = d3.scale.linear().range([0, svgWidth-labelLen-countLen]);
     var y = d3.scale.ordinal().rangeRoundBands([0, svgHeight],.1);
     var yAxis = d3.svg.axis().scale(y).orient("left").tickSize(0);
-    x.domain([0, d3.max(dataset, function(d) {return d.count;})]);
+    x.domain([0, d3.max(dataset, function(d) {return Number(d.count);})]);
     y.domain(dataset.map(function(d) {return d.label;}));
     var format = d3.format(",.0f");
 
@@ -30,10 +30,10 @@ function drawBarChart(domComp, dataset, svgWidth, svgHeight) {
 
     bars.append("text")
         .attr("class", "count")
-        .attr("x", function(d) {return x(d.count)-3;})
+        .attr("x", function(d) {return x(d.count)+3;})
         .attr("y", y.rangeBand()/2)
         .attr("dy", ".35em")
-        .attr("text-anchor", "end")
+        .attr("text-anchor", "start")
         .text(function(d) {return format(d.count);});
 
     svg.append("g")
