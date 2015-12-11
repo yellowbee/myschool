@@ -4,10 +4,13 @@
 
 .bar text.count {
     fill: black;
+<<<<<<< HEAD
     font: 12px sans-serif;
 }
 g text.count {
     fill: white;
+=======
+>>>>>>> branch 'master' of git@github.com:yellowbee/myschool.git
     font: 12px sans-serif;
     font-weight: bold;
 }
