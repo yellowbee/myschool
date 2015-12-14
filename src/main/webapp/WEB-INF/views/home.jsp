@@ -58,7 +58,7 @@
                                         <input type="submit" class="btn btn-primary" value="登&nbsp;&nbsp;录" />
                                     </div>
                                     <div class="col-xs-8">
-                                        <!-- <a href="javascript:;"><h5>注&nbsp;&nbsp;册</h5></a> -->
+                                        <a href="signup"><h5>注&nbsp;&nbsp;册</h5></a>
                                     </div>
                                 </div>
 
@@ -71,7 +71,7 @@
                             </form:form>
                             </div>
 
-							<a href="#signup_modal" class="btn btn-lg btn-primary" data-toggle="modal">注&nbsp;&nbsp;册</a>
+							<!--  <a href="#signup_modal" class="btn btn-lg btn-primary" data-toggle="modal">注&nbsp;&nbsp;册</a>
 								<div id="signup_modal" class="modal fade">
 							        <div class="modal-dialog">
 							            <div class="modal-content">
@@ -117,10 +117,10 @@
 							                </div>
 							            </div>
 							        </div>
-							    </div> <!-- signup_modal -->
+							    </div> -->
 							    
                             <div style="background-color:#eee;margin:0px;padding:10px 20px">
-                                <a href="javascript:;"><h5>忘了用户名和密码了？</h5></a>
+                                <a href="pw-reset-req"><h5>忘了用户名和密码了？</h5></a>
                             </div>
 
                         </div>

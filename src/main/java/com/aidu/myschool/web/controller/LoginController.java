@@ -75,6 +75,18 @@ public class LoginController {
         return null;
     }
 	
+	@RequestMapping(value="/signup", method = RequestMethod.GET)
+	public ModelAndView signUpPage() {
+		ModelAndView model = new ModelAndView("signup");
+		return model;
+	}
+	
+	@RequestMapping(value="/pw-reset-req", method = RequestMethod.GET)
+	public ModelAndView passwordResetRequest() {
+		ModelAndView model = new ModelAndView("pw-reset-req");
+		return model;
+	}
+	
 	@RequestMapping(value="/authentication", method = RequestMethod.POST)
 	public ModelAndView authenticate(@ModelAttribute("loginForm") LoginForm loginForm, HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(loginForm.getUsername());

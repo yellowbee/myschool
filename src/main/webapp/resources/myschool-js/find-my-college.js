@@ -75,6 +75,9 @@ function showVisDataHandler(ev) {
 				$('#barChart').empty();
 				drawBarChart('#barChart', result[1].enrollment, 300, 60);
 				
+				$('#pieChart_faculty').empty();
+				drawPieChart('#pieChart_faculty', result[0].majorsPerDegreeList, 300, 120);
+				
 				$('#mixedbarchart').empty();
 				drawMixedBarChart("#mixedbarchart", [
 				                                     {label: "学费", count: "$30,000"},

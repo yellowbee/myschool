@@ -374,43 +374,56 @@
                                 有约23300个别学生;其他五个校区拥有约10,000结合;和电子教学有大约5900学生个人。总共39201人已报名参加课程相当于30878名全职出席会议。</h4></p>
                             </ms:factContainer>
                             <ms:factContainer title="专业分布">
-                            	<div id="pieChart" style="margin-left:auto;margin-right:auto"></div>
+                            <div class="row">
+            					<div class="col-md-6 col-lg-6">
+                           			<div id="pieChart" style="margin-left:auto;margin-right:auto"></div>
+                           		</div>
+                           		<div class="col-md-6 col-lg-6">
+                          			<div id="pieChart_faculty" style="margin-left:auto;margin-right:auto"></div>
+                           		</div>
+                           	</div>
                             </ms:factContainer>
 						    <ms:factContainer title="学生录取">
+						    	<div style="display:table;margin:0 auto">
 						    	<div id="barChart"></div>
+						    	</div>
 						    </ms:factContainer>
 						    <ms:factContainer title="在校生学业进度">
-						    	<div style="margin-top: 10px">
-                                <div class="grad_rate-container">
-                                    <div class="grad_rate-stat">68%</div>
-                                    <div class="grad_rate-details">
-                                        <span>reported that they often tried to understand someone else's point of view</span>
-                                    </div>
+						    	<div style="display:table;margin:0 auto">
+	                                <div class="grad_rate-container">
+	                                    <div class="grad_rate-stat">68%</div>
+	                                    <div class="grad_rate-details">
+	                                        <span>reported that they often tried to understand someone else's point of view</span>
+	                                    </div>
+	                                </div>
+	
+	                                <div class="grad_rate-container">
+	                                    <div class="grad_rate-stat">68%</div>
+	                                    <div class="grad_rate-details">
+	                                        <span>reported that they often tried to understand someone else's point of view</span>
+	                                    </div>
+	                                </div>
+	
+	                                <div class="grad_rate-container">
+	                                    <div class="grad_rate-stat">68%</div>
+	                                    <div class="grad_rate-details">
+	                                        <span>reported that they often tried to understand someone else's point of view</span>
+	                                    </div>
+	                                </div>
                                 </div>
-
-                                <div class="grad_rate-container">
-                                    <div class="grad_rate-stat">68%</div>
-                                    <div class="grad_rate-details">
-                                        <span>reported that they often tried to understand someone else's point of view</span>
-                                    </div>
-                                </div>
-
-                                <div class="grad_rate-container">
-                                    <div class="grad_rate-stat">68%</div>
-                                    <div class="grad_rate-details">
-                                        <span>reported that they often tried to understand someone else's point of view</span>
-                                    </div>
-                                </div>
-                                </div>
-						    </ms:factContainer>
-						    <ms:factContainer title="师资组成">
-						    	<div id="pieChart_faculty" style="margin-left:auto;margin-right:auto"></div>
 						    </ms:factContainer>
 						    <ms:factContainer title="学费">
-						    	<div id="mixedbarchart"></div>
-								<div id="legend"></div>
+						    	<div style="display:table;margin:0 auto">
+							    	<div id="mixedbarchart"></div>
+									<div id="legend"></div>
+								</div>
 						    </ms:factContainer>
 						    <ms:factContainer title="联系方式">
+						    	<div style="display:table;margin:0 auto">
+	                                <span style="font-weight: bold">地址</span>： 120 Chubb Hall Athens, OH 45701-2979 <br>
+	                                <span style="font-weight: bold">网址</span>：http://www.students.asu.edu/admission <br>
+	                                <span style="font-weight: bold">电子邮件</span>：shannal@andrews.edu <br>
+                                </div>
 						    </ms:factContainer>
 						</div>
                     </div>

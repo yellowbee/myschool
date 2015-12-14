@@ -195,7 +195,7 @@ html .ui-autocomplete {
     border: 3px solid #283259;
     color: #283259;
     height: 60px;
-    width: 80%;
+    /*width: 80%;*/
     margin-bottom: 5px;
     position: relative;
 }
@@ -215,4 +215,12 @@ html .ui-autocomplete {
     line-height: 1em;
     margin-left: 80px;
     padding-top: 10px;
+}
+
+.required:after {
+    content: "*";
+    position: absolute;
+    color: #c13145;
+    font-size: 16px;
+    margin-left: 3px;
 }
