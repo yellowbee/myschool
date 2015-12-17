@@ -19,12 +19,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.aidu.myschool.domain.AjaxResponse;
 import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.CollegeSearchCriteria;
-import com.aidu.myschool.domain.Pair;
 import com.aidu.myschool.domain.ResponseStatus;
 import com.aidu.myschool.solr.SolrUtil;
+import com.aidu.myschool.web.formbean.SignUpForm;
 
 @Controller
 public class HomeController {
+	
 	/*
 	 * @RequestMapping(value="/authentication", method = RequestMethod.POST)
 	 * public ModelAndView authenticate(HttpServletResponse response) throws

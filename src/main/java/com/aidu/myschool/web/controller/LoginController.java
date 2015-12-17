@@ -1,7 +1,9 @@
 package com.aidu.myschool.web.controller;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,13 +12,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aidu.myschool.dao.UserDao;
+import com.aidu.myschool.domain.College;
 import com.aidu.myschool.domain.User;
 import com.aidu.myschool.security.PasswordHash;
 import com.aidu.myschool.web.formbean.LoginForm;
@@ -31,7 +37,7 @@ public class LoginController {
 	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView model = new ModelAndView("home");
-		model.addObject("signUpForm", new SignUpForm());
+		//model.addObject("signUpForm", new SignUpForm());
 		model.addObject("loginForm", new LoginForm());
 		model.addObject("visibility", "hidden");
 		return model;
@@ -44,7 +50,7 @@ public class LoginController {
 		return new ModelAndView("redirect:home");
 	}
 	
-	@RequestMapping(value="/signUp", method = RequestMethod.POST)
+	/*@RequestMapping(value="/signUp", method = RequestMethod.POST)
 	public ModelAndView processSignUp(@ModelAttribute("signUpForm") SignUpForm signUpForm) {
          
         // implement your own registration logic here...
@@ -69,17 +75,29 @@ public class LoginController {
         
         userDao.insert(user);
        
-       /* ModelAndView model = new ModelAndView("login");
+        ModelAndView model = new ModelAndView("login");
         model.addObject("signUpForm", signUpForm);
-        return model;*/
+        return model;
         return null;
-    }
+    }*/
 	
 	@RequestMapping(value="/signup", method = RequestMethod.GET)
 	public ModelAndView signUpPage() {
 		ModelAndView model = new ModelAndView("signup");
 		return model;
 	}
+	
+	@RequestMapping(value = "/signUpProcess", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<College> signUpProcess(@RequestBody SignUpForm signUpForm) throws IOException {
+
+		System.out.println(signUpForm.getEmail());
+		System.out.println(signUpForm.getPassword());
+		
+		List<College> list_coll = new ArrayList<College>();
+		list_coll.add(new College("ou", "athens", "ohio"));
+		return list_coll;
+	}
+	
 	
 	@RequestMapping(value="/pw-reset-req", method = RequestMethod.GET)
 	public ModelAndView passwordResetRequest() {

@@ -8,7 +8,38 @@
 	<jsp:attribute name="script">
 		<script type="text/javascript">
 	        $(document).ready(function(){
-	            
+	        	// process the form
+	            $('form').submit(function(event) {
+
+	                // get the form data
+	                // there are many ways to get this data using jQuery (you can use the class or id also)
+	                /* var formData = {
+	                    userName: $('input[id=userName]').val(),
+	                    email: $('input[id=email]').val(),
+	                    password: $('input[id=password]').val(),
+	                    confirmPassword: $('input[id=confirmPassword]').val()
+	                }; */
+
+	                // process the form
+	                $.ajax({
+						  type: "POST",
+						  contentType: "application/json;charset=utf-8",
+					      url: 'signUpProcess',
+					      data: JSON.stringify({
+			                    nickName: $('input[id=nickName]').val(),
+			                    email: $('input[id=email]').val(),
+			                    password: $('input[id=password]').val(),
+			                    confirmPassword: $('input[id=confirmPassword]').val()
+			                }),
+					      dataType: 'json',
+					      success: function(result) {
+					    	  alert("coming back successfully");
+					      },
+					      error: function (xhr, textStatus, errorThrown) { alert(errorThrown); }
+					});
+	                
+	                event.preventDefault();
+	            });
 	        });
     	</script>  
 	</jsp:attribute>
@@ -21,21 +52,21 @@
                             <div style="display:table;margin:30px auto"><h1>用户注册</h1></div>
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3 required" for="userName">用户名:</label>
+                                    <label class="control-label col-xs-3 required" for="nickName">用户名:</label>
                                     <div class="col-xs-9">
-                                        <input type="email" class="form-control" id="userName" placeholder="用户名">
+                                        <input type="text" class="form-control" id="nickName" placeholder="用户名">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3 required" for="inputEmail">电子信箱:</label>
+                                    <label class="control-label col-xs-3 required" for="email">电子信箱:</label>
                                     <div class="col-xs-9">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                        <input type="email" class="form-control" id="email" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3 required" for="inputPassword">密码:</label>
+                                    <label class="control-label col-xs-3 required" for="password">密码:</label>
                                     <div class="col-xs-9">
-                                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                        <input type="password" class="form-control" id="password" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">

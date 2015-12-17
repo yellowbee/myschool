@@ -78,9 +78,9 @@
 					  contentType: "application/json",
 				      url: 'find_my_college',
 				      data: JSON.stringify({
-				         "states": state_arr,
-				         "srcInstCtrl": src_inst_ctrl,
-				         "majors": major_arr
+				         states: state_arr,
+				         srcInstCtrl: src_inst_ctrl,
+				         majors: major_arr
 				      }),
 				      dataType: 'json',
 				      success: function(result) {
@@ -156,7 +156,6 @@
 	                }
 	            });
 	            $( "#actScore" ).val( "$" + $( "#slider-range-act" ).slider( "value" ) );
-	            
 	        });
     	</script>  
 	</jsp:attribute>
