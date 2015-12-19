@@ -37,7 +37,7 @@
 					      dataType: 'json',
 					      success: function(result) {
 					    	  if (result.status == "SUCCESS") {
-					    		  $('#signup-result-text').html('注册成功！ 赶紧登录吧。');
+					    		  $('#signup-result-text').html('注册成功！ 赶紧<a href=\"home\">登录</a>吧.');
 					    	  }
 					    	  else if (result.status = "FAILURE") {
 					    		  $('#signup-result-text').html(result.desc);
