@@ -11,11 +11,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name="usr")
 public class User {
+	
 	private int id;
+	private String nickName;
 	private String email;
 	private String passwordHash;
 	private String firstName;
 	private String lastName;
+	private String phone;
+	private String sex;
 	
 	@Id
 	@GeneratedValue
@@ -25,6 +29,14 @@ public class User {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	@Column(name="nick_name")
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
 	@Column(name="email")
@@ -57,6 +69,22 @@ public class User {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	@Column(name="phone")
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	@Column(name="sex")
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 }

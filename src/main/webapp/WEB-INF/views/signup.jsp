@@ -29,11 +29,19 @@
 			                    nickName: $('input[id=nickName]').val(),
 			                    email: $('input[id=email]').val(),
 			                    password: $('input[id=password]').val(),
-			                    confirmPassword: $('input[id=confirmPassword]').val()
+			                    lastName: $('input[id=lastName]').val(),
+			                    firstName: $('input[id=firstName]').val(),
+			                    phone: $('input[id=phone]').val(),
+			                    sex: $('input[id=genderRadios]').val()
 			                }),
 					      dataType: 'json',
 					      success: function(result) {
-					    	  alert("coming back successfully");
+					    	  if (result.status == "SUCCESS") {
+					    		  $('#signup-result-text').html('注册成功！ 赶紧登录吧。');
+					    	  }
+					    	  else if (result.status = "FAILURE") {
+					    		  $('#signup-result-text').html(result.desc);
+					    	  }
 					      },
 					      error: function (xhr, textStatus, errorThrown) { alert(errorThrown); }
 					});
@@ -76,32 +84,110 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3" for="name">姓名:</label>
+                                    <label class="control-label col-xs-3" for="name">姓:</label>
                                     <div class="col-xs-3">
-                                        <input type="text" class="form-control" id="name" placeholder="Name">
+                                        <input type="text" class="form-control" id="lastName" placeholder="姓">
+                                    </div>
+                                    <label class="control-label col-xs-1" for="name">名:</label>
+                                    <div class="col-xs-3">
+                                        <input type="text" class="form-control" id="firstName" placeholder="名">
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input type="hidden" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3" for="phoneNumber">电话:</label>
+                                    <label class="control-label col-xs-3" for="phone">电话:</label>
                                     <div class="col-xs-9">
-                                        <input type="tel" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                                        <input type="tel" class="form-control" id="phone" placeholder="电话">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-xs-3">出生日期:</label>
                                     <div class="col-xs-3">
                                         <select class="form-control">
-                                            <option>Date</option>
+                                            <option>日</option>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                            <option>04</option>
+                                            <option>05</option>
+                                            <option>06</option>
+                                            <option>07</option>
+                                            <option>08</option>
+                                            <option>09</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option>20</option>
+                                            <option>21</option>
+                                            <option>22</option>
+                                            <option>23</option>
+                                            <option>24</option>
+                                            <option>25</option>
+                                            <option>26</option>
+                                            <option>27</option>
+                                            <option>28</option>
+                                            <option>29</option>
+                                            <option>30</option>
+                                            <option>31</option>
                                         </select>
                                     </div>
                                     <div class="col-xs-3">
                                         <select class="form-control">
-                                            <option>Month</option>
+                                            <option>月</option>
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option>03</option>
+                                            <option>04</option>
+                                            <option>05</option>
+                                            <option>06</option>
+                                            <option>07</option>
+                                            <option>08</option>
+                                            <option>09</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
                                         </select>
                                     </div>
                                     <div class="col-xs-3">
                                         <select class="form-control">
-                                            <option>Year</option>
+                                            <option>年</option>
+                                            <option>2015</option>
+                                            <option>2014</option>
+                                            <option>2013</option>
+                                            <option>2012</option>
+                                            <option>2011</option>
+                                            <option>2010</option>
+                                            <option>2009</option>
+                                            <option>2008</option>
+                                            <option>2007</option>
+                                            <option>2006</option>
+                                            <option>2005</option>
+                                            <option>2004</option>
+                                            <option>2003</option>
+                                            <option>2002</option>
+                                            <option>2001</option>
+                                            <option>2000</option>
+                                            <option>1999</option>
+                                            <option>1998</option>
+                                            <option>1997</option>
+                                            <option>1996</option>
+                                            <option>1995</option>
+                                            <option>1994</option>
+                                            <option>1993</option>
+                                            <option>1992</option>
+                                            <option>1991</option>
+                                            <option>1990</option>
+                                            <option>1989</option>
+                                            <option>1988</option>
                                         </select>
                                     </div>
                                 </div>
@@ -109,12 +195,12 @@
                                     <label class="control-label col-xs-3">性别:</label>
                                     <div class="col-xs-2">
                                         <label class="radio-inline">
-                                            <input type="radio" name="genderRadios" value="male"> 男
+                                            <input type="radio" name="genderRadios" value="M"> 男
                                         </label>
                                     </div>
                                     <div class="col-xs-2">
                                         <label class="radio-inline">
-                                            <input type="radio" name="genderRadios" value="female"> 女
+                                            <input type="radio" name="genderRadios" value="F"> 女
                                         </label>
                                     </div>
                                 </div>
@@ -122,6 +208,11 @@
                                     <div class="col-xs-offset-3 col-xs-9">
                                         <input type="submit" class="btn btn-primary" value="Submit">
                                         <input type="reset" class="btn btn-default" value="Reset">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-offset-3 col-xs-9">
+                                        <span id="signup-result-text"></span>
                                     </div>
                                 </div>
                             </form>

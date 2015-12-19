@@ -4,11 +4,14 @@ package com.aidu.myschool.web.formbean;
  * Form-backing bean for signup form.
  */
 public class SignUpForm {
+	
 	private String nickName;
 	private String email;
 	private String password;
-	private String confirmPassword;
-	
+	private String firstName;
+	private String lastName;
+	private String phone;
+	private String sex;
 	
 	public String getNickName() {
 		return nickName;
@@ -28,13 +31,29 @@ public class SignUpForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getConfirmPassword() {
-		return confirmPassword;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-
-	
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 
 }

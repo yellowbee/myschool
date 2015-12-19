@@ -3,7 +3,6 @@ package com.aidu.myschool.web.controller;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aidu.myschool.dao.UserDao;
-import com.aidu.myschool.domain.College;
+import com.aidu.myschool.domain.SignUpResponse;
 import com.aidu.myschool.domain.User;
 import com.aidu.myschool.security.PasswordHash;
 import com.aidu.myschool.web.formbean.LoginForm;
@@ -88,14 +87,37 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/signUpProcess", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<College> signUpProcess(@RequestBody SignUpForm signUpForm) throws IOException {
+	public @ResponseBody SignUpResponse signUpProcess(@RequestBody SignUpForm signUpForm) throws IOException {
 
 		System.out.println(signUpForm.getEmail());
 		System.out.println(signUpForm.getPassword());
 		
-		List<College> list_coll = new ArrayList<College>();
-		list_coll.add(new College("ou", "athens", "ohio"));
-		return list_coll;
+		List<User> userList = userDao.getUserByEmail(signUpForm.getEmail());
+		if (userList != null && userList.size() > 0) {
+			return new SignUpResponse("FAILURE", "电子邮件地址已被注册， 请重新填写");
+		}
+		
+		User user = new User();
+		user.setNickName(signUpForm.getNickName());
+        user.setEmail(signUpForm.getEmail());
+        
+        // convert the password in plain text to 48-bit salted hash code
+        try {
+			user.setPasswordHash(PasswordHash.createHash(signUpForm.getPassword()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			e.printStackTrace();
+		}
+        
+        user.setFirstName(signUpForm.getFirstName());
+        user.setLastName(signUpForm.getLastName());
+        user.setPhone(signUpForm.getPhone());
+        user.setSex(signUpForm.getSex());
+        
+        userDao.insert(user);
+        
+        return new SignUpResponse("SUCCESS", "");     
 	}
 	
 	
