@@ -14,12 +14,12 @@ import org.apache.solr.common.SolrDocumentList;
 
 import com.aidu.myschool.domain.AjaxResponse;
 import com.aidu.myschool.domain.College;
-import com.aidu.myschool.domain.CollegeSearchCriteria;
-import com.aidu.myschool.domain.Enrollment;
-import com.aidu.myschool.domain.MajorsPerDegreeList;
 import com.aidu.myschool.domain.Pair;
 import com.aidu.myschool.domain.PairNum;
 import com.aidu.myschool.util.PropertiesUtil;
+import com.aidu.myschool.web.domain.ajaxrequest.CollegeSearchCriteria;
+import com.aidu.myschool.web.domain.ajaxresponse.Enrollment;
+import com.aidu.myschool.web.domain.ajaxresponse.MajorsPerDegreeList;
 
 public class SolrUtil {
 	final private static String SOLR_FIELD_STATE = "state";

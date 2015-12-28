@@ -1,7 +1,10 @@
-package com.aidu.myschool.domain;
+package com.aidu.myschool.web.domain.ajaxresponse;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.aidu.myschool.domain.AjaxResponse;
+import com.aidu.myschool.domain.PairNum;
 
 public class Enrollment implements AjaxResponse {
 	private List<PairNum> enrollment = null;

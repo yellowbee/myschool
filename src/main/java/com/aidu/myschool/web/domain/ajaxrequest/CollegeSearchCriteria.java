@@ -1,4 +1,4 @@
-package com.aidu.myschool.domain;
+package com.aidu.myschool.web.domain.ajaxrequest;
 
 import java.util.List;
 

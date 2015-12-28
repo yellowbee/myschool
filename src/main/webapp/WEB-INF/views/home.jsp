@@ -72,7 +72,7 @@
                             </div>
 							    
                             <div style="background-color:#eee;margin:0px;padding:10px 20px">
-                                <a href="pw-reset-req"><h5>忘了用户名和密码了？</h5></a>
+                                <a href="getPwResetReqPg"><h5>忘了用户名和密码了？</h5></a>
                             </div>
 
                         </div>

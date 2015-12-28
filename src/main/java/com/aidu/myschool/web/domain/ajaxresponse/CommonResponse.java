@@ -1,10 +1,10 @@
-package com.aidu.myschool.domain;
+package com.aidu.myschool.web.domain.ajaxresponse;
 
-public class SignUpResponse {
+public class CommonResponse {
 	private String status;
 	private String desc;
 	
-	public SignUpResponse(String status, String desc) {
+	public CommonResponse(String status, String desc) {
 		this.status = status;
 		this.desc = desc;
 	}

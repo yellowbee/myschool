@@ -13,17 +13,17 @@
 	                $.ajax({
 						  type: "POST",
 						  contentType: "application/json",
-					      url: 'submitPwResetReq',
+					      url: 'submitPwResetInfo',
 					      data: JSON.stringify({
-			                    email: $('input[id=email]').val()
+					    	  newPassword: $('input[id=newPassword]').val()
 			              }),
 					      dataType: 'json',
 					      success: function(result) {
 					    	  if (result.status == "SUCCESS") {
-					    		  $('#pwreset-result-text').html('请点击<a href=\"passwordResetPg?uuid=' + result.uuid + '\">密码恢复链接</a>，跟随提示重置密码');
+					    		  $('#pwreset-result-text').html('Password has been updated! Please log in.');
 					    	  }
 					    	  else {
-					    		  $('#pwreset-result-text').html('We did not find the email address submitted.');
+					    		  $('#pwreset-result-text').html(result.desc);
 					    	  }
 					      },
 					      error: function (xhr, textStatus, errorThrown) { alert(errorThrown); }
@@ -39,21 +39,26 @@
                     <div class="col-md-2 col-lg-2"></div>
                     <div class="col-md-8 col-lg-8">
                         <div class="bs-example">
-                            <div style="display:table;margin:30px auto"><h1>忘了密码?</h1></div>
+                            <div style="display:table;margin:30px auto"><h1>密码恢复</h1></div>
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <div class="control-label col-xs-3"></div>
                                     <div class="col-xs-9">
-                                        <label class="control-label">请输入注册账户时所使用的电子邮箱地址</label>
+                                        <label class="control-label">请输入以下恢复信息</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-xs-3 required" for="inputEmail">电子信箱:</label>
+                                    <label class="control-label col-xs-3 required" for="newPassword">新密码:</label>
                                     <div class="col-xs-9">
-                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                        <input type="email" class="form-control" id="newPassword" placeholder="Email">
                                     </div>
                                 </div>
-
+								<div class="form-group">
+                                    <label class="control-label col-xs-3 required" for="confirmNewPassword">确认新密码:</label>
+                                    <div class="col-xs-9">
+                                        <input type="email" class="form-control" id="confirmNewPassword" placeholder="Email">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-xs-offset-3 col-xs-9">
                                         <input type="submit" class="btn btn-primary" value="Submit">

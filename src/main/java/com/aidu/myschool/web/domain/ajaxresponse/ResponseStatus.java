@@ -1,4 +1,6 @@
-package com.aidu.myschool.domain;
+package com.aidu.myschool.web.domain.ajaxresponse;
+
+import com.aidu.myschool.domain.AjaxResponse;
 
 public class ResponseStatus implements AjaxResponse {
 	private String status;

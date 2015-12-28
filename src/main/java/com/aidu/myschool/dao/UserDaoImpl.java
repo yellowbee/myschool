@@ -29,5 +29,7 @@ public class UserDaoImpl implements UserDao {
 		return  (List<User>)query.getResultList();
 	}
 	
-	
+	public User update(User updatedUser) {
+		return entityManager.merge(updatedUser);
+	}
 }
