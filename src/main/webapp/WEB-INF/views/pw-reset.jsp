@@ -15,7 +15,8 @@
 						  contentType: "application/json",
 					      url: 'submitPwResetInfo',
 					      data: JSON.stringify({
-					    	  newPassword: $('input[id=newPassword]').val()
+					    	  newPassword: $('input[id=newPassword]').val(),
+					    	  email: $('input[id=email]').val()
 			              }),
 					      dataType: 'json',
 					      success: function(result) {
@@ -50,19 +51,20 @@
                                 <div class="form-group">
                                     <label class="control-label col-xs-3 required" for="newPassword">新密码:</label>
                                     <div class="col-xs-9">
-                                        <input type="email" class="form-control" id="newPassword" placeholder="Email">
+                                        <input type="password" class="form-control" id="newPassword" placeholder="password">
                                     </div>
                                 </div>
 								<div class="form-group">
                                     <label class="control-label col-xs-3 required" for="confirmNewPassword">确认新密码:</label>
                                     <div class="col-xs-9">
-                                        <input type="email" class="form-control" id="confirmNewPassword" placeholder="Email">
+                                        <input type="password" class="form-control" id="confirmNewPassword" placeholder="confirm password">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-xs-offset-3 col-xs-9">
                                         <input type="submit" class="btn btn-primary" value="Submit">
                                         <input type="reset" class="btn btn-default" value="Reset">
+                                        <input type="hidden" id="email" value="${email}">
                                     </div>
                                 </div>
                                 

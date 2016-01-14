@@ -208,6 +208,7 @@
                                     <div class="col-xs-offset-3 col-xs-9">
                                         <input type="submit" class="btn btn-primary" value="Submit">
                                         <input type="reset" class="btn btn-default" value="Reset">
+                                        <a href="home">取消</a>
                                     </div>
                                 </div>
                                 <div class="form-group">

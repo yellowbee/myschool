@@ -138,6 +138,7 @@ public class LoginController {
 			long reqTime = prList.get(0).getTimestamp().getTime();
 			if ((currentTime - reqTime) < ONE_HOUR_IN_MILLISECS) {
 				ModelAndView model = new ModelAndView("pw-reset");
+				model.addObject("email", prList.get(0).getEmail());
 				return model;
 			}
 		}
@@ -145,38 +146,29 @@ public class LoginController {
 		return null;
 	}
 	
-	/*@RequestMapping(value = "/submitPwResetInfo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/submitPwResetInfo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody CommonResponse processPasswordResetRequest(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody PasswordResetInfo pwResetInfo) throws IOException {
 		
 		System.out.println("New password:" + pwResetInfo.getNewPassword());
-		List<PasswordReset> prList = passwordResetDao.getResetRequestByUuid(request.getParameter(uuid));
-		if (prList != null && prList.size() > 0) {
-			long currentTime = System.currentTimeMillis();
-			long reqTime = prList.get(0).getTimestamp().getTime();
-			if ((currentTime - reqTime) < ONE_HOUR_IN_MILLISECS) {
-				List<User> userList = userDao.getUserByEmail(prList.get(0).getEmail());
-				if (userList != null && userList.size() > 0) {
-					try {
-						userList.get(0).setPasswordHash(PasswordHash.createHash(pwResetInfo.getNewPassword()));
-					} catch (NoSuchAlgorithmException e) {
-						e.printStackTrace();
-					} catch (InvalidKeySpecException e) {
-						e.printStackTrace();
-					}
-				}
+		System.out.println("Associated email:" + pwResetInfo.getEmail());
+		
+		List<User> userList = userDao.getUserByEmail(pwResetInfo.getEmail());
+		if (userList != null && userList.size() > 0) {
+			try {
+				userList.get(0).setPasswordHash(PasswordHash.createHash(pwResetInfo.getNewPassword()));
+				userDao.update(userList.get(0));
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				e.printStackTrace();
 			}
-			else {
-				return new CommonResponse("FAILURE", "Request expired!");
-			}
-		}
-		else {
-			return new CommonResponse("FAILURE", "Invalid request URL!");
+			
+			return new CommonResponse("SUCCESS", "");
 		}
 		
-		return new CommonResponse("SUCCESS", "");
-		
-	}*/
+		return new CommonResponse("FAILURE", "Internal error!");
+	}
 	
 	@RequestMapping(value="/authentication", method = RequestMethod.POST)
 	public ModelAndView authenticate(@ModelAttribute("loginForm") LoginForm loginForm, HttpServletRequest request, HttpServletResponse response) {

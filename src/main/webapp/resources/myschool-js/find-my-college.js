@@ -76,20 +76,12 @@ function showVisDataHandler(ev) {
 				drawBarChart('#barChart', result[1].enrollment, 300, 60);
 				
 				$('#pieChart_faculty').empty();
-				drawPieChart('#pieChart_faculty', result[0].majorsPerDegreeList, 300, 120);
+				drawPieChart('#pieChart_faculty', result[2].faculty, 300, 120);
 				
 				$('#mixedbarchart').empty();
-				drawMixedBarChart("#mixedbarchart", [
-				                                     {label: "学费", count: "$30,000"},
-				                                     {label: "住宿", count: "$5,000"},
-				                                     {label: "伙食", count: "$5,000"}
-				                                 ], 500, 30);
+				drawMixedBarChart("#mixedbarchart", result[3].tuition, 500, 30);
 				$('#legend').empty();
-			    drawLegendCategory10("#legend", [
-			                                     {label: "学费", count: "$30,000"},
-				                                     {label: "住宿", count: "$5,000"},
-				                                     {label: "伙食", count: "$5,000"}
-			                                 ], 400, 25);
+			    drawLegendCategory10("#legend", result[3].tuition, 400, 25);
 				
 				switchTabPane(ev);
 			}
