@@ -390,23 +390,23 @@
 						    <ms:factContainer title="在校生学业进度">
 						    	<div style="display:table;margin:0 auto">
 	                                <div class="grad_rate-container">
-	                                    <div class="grad_rate-stat">68%</div>
+	                                    <div class="grad_rate-stat" id="gradRate4"></div>
 	                                    <div class="grad_rate-details">
-	                                        <span>reported that they often tried to understand someone else's point of view</span>
+	                                        <span>这个百分比的学生可以在4年内毕业</span>
 	                                    </div>
 	                                </div>
 	
 	                                <div class="grad_rate-container">
-	                                    <div class="grad_rate-stat">68%</div>
+	                                    <div class="grad_rate-stat" id="gradRate5"></div>
 	                                    <div class="grad_rate-details">
-	                                        <span>reported that they often tried to understand someone else's point of view</span>
+	                                        <span>这个百分比的学生可以在5年内毕业</span>
 	                                    </div>
 	                                </div>
 	
 	                                <div class="grad_rate-container">
-	                                    <div class="grad_rate-stat">68%</div>
+	                                    <div class="grad_rate-stat" id="gradRate6"></div>
 	                                    <div class="grad_rate-details">
-	                                        <span>reported that they often tried to understand someone else's point of view</span>
+	                                        <span>这个百分比的学生可以在6年内毕业</span>
 	                                    </div>
 	                                </div>
                                 </div>
@@ -419,9 +419,9 @@
 						    </ms:factContainer>
 						    <ms:factContainer title="联系方式">
 						    	<div style="display:table;margin:0 auto">
-	                                <span style="font-weight: bold">地址</span>： 120 Chubb Hall Athens, OH 45701-2979 <br>
-	                                <span style="font-weight: bold">网址</span>：http://www.students.asu.edu/admission <br>
-	                                <span style="font-weight: bold">电子邮件</span>：shannal@andrews.edu <br>
+	                                <span style="font-weight: bold">地址</span>： <span id="address"></span> <br>
+	                                <span style="font-weight: bold">网址</span>：<span id="url"></span> <br>
+	                                <span style="font-weight: bold">电子邮件</span>：<span id="email"></span> <br>
                                 </div>
 						    </ms:factContainer>
 						</div>

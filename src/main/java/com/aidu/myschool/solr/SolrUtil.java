@@ -18,8 +18,10 @@ import com.aidu.myschool.domain.Pair;
 import com.aidu.myschool.domain.PairNum;
 import com.aidu.myschool.util.PropertiesUtil;
 import com.aidu.myschool.web.domain.ajaxrequest.CollegeSearchCriteria;
+import com.aidu.myschool.web.domain.ajaxresponse.Contact;
 import com.aidu.myschool.web.domain.ajaxresponse.Enrollment;
 import com.aidu.myschool.web.domain.ajaxresponse.Faculty;
+import com.aidu.myschool.web.domain.ajaxresponse.GraduationRate;
 import com.aidu.myschool.web.domain.ajaxresponse.MajorsPerDegreeList;
 import com.aidu.myschool.web.domain.ajaxresponse.Tuition;
 
@@ -39,6 +41,12 @@ public class SolrUtil {
 	final private static String ROOM_FEE = "room_fee";
 	final private static String BOARD_FEE = "board_fee";
 	final private static String IN_STATE_TUITION_FEES_UNDER = "in-state-tuition-fees-under";
+	final private static String GRAD_RATE_BA_IN_4YEARS = "grad_rate_ba_in_4years";
+	final private static String GRAD_RATE_BA_IN_5YEARS = "grad_rate_ba_in_5years";
+	final private static String GRAD_RATE_BA_IN_6YEARS = "grad_rate_ba_in_6years";
+	final private static String ADDRESS = "address";
+	final private static String URL = "url";
+	final private static String EMAIL = "e-mail";
 	
 	final private static String url = "http://localhost:8983/solr/collection1";
 	private static SolrClient solr = new HttpSolrClient(url);
@@ -105,12 +113,15 @@ public class SolrUtil {
 			queryString = "school-name:" + "\"" + criteria.getSchoolName() + "\"";
 		}
 
+		// constructs the query string for solr
 		SolrQuery query = new SolrQuery();
 		query.set("q", queryString);
 		query.set("fl", SOLR_FIELD_MAJORS_PER_DEGREE + "," +
 						RECEIVED_UNDERGRAD + "," + ACCEPTED_UNDERGRAD + "," + ENROLLED_UNDERGRAD + "," +
 						NUM_PROF + "," + NUM_ASSOC_PROF + "," + NUM_ASSST_PROF + "," +
-						ROOM_FEE + "," + BOARD_FEE + "," + IN_STATE_TUITION_FEES_UNDER);
+						ROOM_FEE + "," + BOARD_FEE + "," + IN_STATE_TUITION_FEES_UNDER + "," +
+						GRAD_RATE_BA_IN_4YEARS + "," + GRAD_RATE_BA_IN_5YEARS + "," + GRAD_RATE_BA_IN_6YEARS + "," +
+						ADDRESS + "," + URL + "," + EMAIL);
 		query.set("rows", SOLR_MAX_RETURNED_DOCS);
 		List<AjaxResponse> degreeCountList = new ArrayList<AjaxResponse>();
 		
@@ -168,6 +179,21 @@ public class SolrUtil {
 			tuition.getTuition().add(new Pair("伙食费", board_fee));
 			tuition.getTuition().add(new Pair("州内学费", in_state_tuition_fees_under));
 			degreeCountList.add(tuition);
+			
+			String grad_rate_in_4 = ((String)results.get(0).get(GRAD_RATE_BA_IN_4YEARS)).replace("%", "");
+			String grad_rate_in_5 = ((String)results.get(0).get(GRAD_RATE_BA_IN_5YEARS)).replace("%", "");
+			String grad_rate_in_6 = ((String)results.get(0).get(GRAD_RATE_BA_IN_6YEARS)).replace("%", "");
+			GraduationRate gradRate = new GraduationRate();
+			gradRate.getGradRate().add(new Pair("", grad_rate_in_4));
+			gradRate.getGradRate().add(new Pair("", grad_rate_in_5));
+			gradRate.getGradRate().add(new Pair("", grad_rate_in_6));
+			degreeCountList.add(gradRate);
+			
+			String address = (String)results.get(0).get(ADDRESS);
+			String url = (String)results.get(0).get(URL);
+			String email = (String)results.get(0).get(EMAIL);
+			Contact contact = new Contact(address, url, email);
+			degreeCountList.add(contact);
 			
 		} catch (SolrServerException e) {
 			e.printStackTrace();

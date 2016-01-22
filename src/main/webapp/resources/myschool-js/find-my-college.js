@@ -82,7 +82,21 @@ function showVisDataHandler(ev) {
 				drawMixedBarChart("#mixedbarchart", result[3].tuition, 500, 30);
 				$('#legend').empty();
 			    drawLegendCategory10("#legend", result[3].tuition, 400, 25);
+			    
+			    $('#gradRate4').empty();
+			    $('#gradRate4').html(result[4].gradRate[0].count + '%');
+			    $('#gradRate5').empty();
+			    $('#gradRate5').html(result[4].gradRate[1].count + '%');
+			    $('#gradRate6').empty();
+			    $('#gradRate6').html(result[4].gradRate[2].count + '%');
 				
+			    $('#address').empty();
+			    $('#address').html(result[5].address);
+			    $('#url').empty();
+			    $('#url').html(result[5].url);
+			    $('#email').empty();
+			    $('#email').html(result[5].email);
+			    
 				switchTabPane(ev);
 			}
 		},
