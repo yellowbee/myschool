@@ -75,9 +75,9 @@ public class SolrUtil {
 			queryString += ")";
 		}
 		
-		if (criteria.getSrcInstCtrl() != null) {
-			if (queryString.equals("")) queryString += "AND ";
-			queryString += "(a2_src_instl_ctrl_s:" + criteria.getSrcInstCtrl() + ")";
+		if (!criteria.getSrcInstCtrl().equals("dontcare")) {
+			if (!queryString.equals("")) queryString += "AND ";
+			queryString += "(control:" + "\"" + criteria.getSrcInstCtrl() + "\"" + ")";
 		}
 		
 		if (queryString.equals("")) {

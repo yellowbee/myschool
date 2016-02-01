@@ -53,16 +53,18 @@
        	
             	   $('#result_table').find('tr').empty();
             	   
-            	   if ($('input[value=Public]').is(":checked")) {
-                       src_inst_ctrl = 'public';
+            	   if ($('input[value=Public]').is(":checked") && $('input[value=Private').is(":checked")) {
+                       src_inst_ctrl = 'dontcare';
+                   }
+            	   else if ($('input[value=Public]').is(":checked")) {
+                       src_inst_ctrl = 'Public';
                    }
                    else if ($('input[value=Private').is(":checked")) {
-                       src_inst_ctrl = 'private';
+                       src_inst_ctrl = 'Private nonprofit';
                    }
-                   else if ($('input[value=Dontcare]').is(":checked")) {
-                       src_inst_ctrl = null;
+                   else {
+                	   src_inst_ctrl = 'dontcare';
                    }
-            	   
             	   var state_arr = null;
             	   if (Object.keys(selected_state_set).length > 0) {
             		   state_arr = Object.keys(selected_state_set);
@@ -232,7 +234,7 @@
                                         <label><input type="checkbox" value="Public">公立</label>
                                     </div></td>
                                     <td style="padding-bottom: 10px"><div class="checkbox">
-                                        <label><input type="checkbox" value="Public">公立</label>
+                                        <label><input type="checkbox" value="Private">私立</label>
                                     </div></td>
                                 </tr>
                                 <tr>
